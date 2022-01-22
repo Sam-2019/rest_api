@@ -20,4 +20,9 @@ class InstitutionControllerTest < ActionDispatch::IntegrationTest
     get institution_delete_url
     assert_response :success
   end
+
+  test "should get create" do
+    get institution_create_url
+    assert_response :success
+  end
 end
