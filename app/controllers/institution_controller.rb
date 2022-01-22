@@ -11,7 +11,12 @@ class InstitutionController < ApplicationController
 
   def update
     institution = Institution.find params[:id]
-    institution.update(institution_params)
+    updated_institution = institution.update(institution_params)
+        if updated_institution
+          render json: true
+        else
+          render json: false
+        end
   end
 
   def destroy
