@@ -9,5 +9,15 @@ class InstitutionTest < ActiveSupport::TestCase
   test "should be valid" do
     assert @institution.valid?
   end
+
+  test "name should be present" do
+    @institution.name = " "
+    assert_not @institution.valid?
+  end
+
+  test "location should be present" do
+    @institution.location = " "
+    assert_not @institution.valid?
+  end
   
 end
