@@ -19,5 +19,15 @@ class InstitutionTest < ActiveSupport::TestCase
     @institution.location = " "
     assert_not @institution.valid?
   end
+
+  test "name should not be too long" do
+    @institution.name = "a" * 51
+    assert_not @institution.valid?
+  end
+
+  test "location should not be too long" do
+    @institution.location = "a" * 51
+    assert_not @institution.valid?
+  end
   
 end
