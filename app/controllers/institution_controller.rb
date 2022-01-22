@@ -15,6 +15,19 @@ class InstitutionController < ApplicationController
   def delete
   end
 
-  def cretae
+  def create
+    institution = Institution.new(institution_params)
+    if institution.save
+        render json: institution.to_json
+    else
+        render json: institution.errors, status: :unprocessable_entity
+    end
   end
+
+  private
+
+  def institution_params
+    params.permit(:name, :location)
+  end
+
 end
