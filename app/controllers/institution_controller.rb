@@ -12,7 +12,9 @@ class InstitutionController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
+    institution = Institution.find params[:id]
+    institution.destroy
   end
 
   def create
