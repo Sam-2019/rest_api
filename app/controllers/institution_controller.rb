@@ -10,6 +10,8 @@ class InstitutionController < ApplicationController
   end
 
   def update
+    institution = Institution.find params[:id]
+    institution.update(institution_params)
   end
 
   def destroy
