@@ -8,3 +8,19 @@ class User < ApplicationRecord
                         format: {with: VALID_EMAIL_REGEX}, 
                         uniqueness: {case_sensitive: true}
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  first_name :string
+#  last_name  :string
+#  email      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
+#
