@@ -7,6 +7,8 @@ class User < ApplicationRecord
     validates :email, presence: true, length: {maximum: 250},
                         format: {with: VALID_EMAIL_REGEX}, 
                         uniqueness: {case_sensitive: true}
+
+    scope :search_by_name, -> (query = nil) { where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%")}
 end
 
 # == Schema Information
