@@ -39,4 +39,5 @@ end
 #  updated_at :datetime         not null
 #  verified   :integer
 #  approved   :integer
+#  state      :string
 #
