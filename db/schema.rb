@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_22_104050) do
+ActiveRecord::Schema.define(version: 2022_02_17_063736) do
 
   create_table "institutions", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "verified"
+    t.integer "approved"
   end
 
   create_table "users", force: :cascade do |t|
@@ -25,6 +27,8 @@ ActiveRecord::Schema.define(version: 2022_01_22_104050) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "verified"
+    t.integer "approved"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
