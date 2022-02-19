@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    include AASM
+
     before_save {self.email = email.downcase}
 
     validates :first_name, presence: true, length: {maximum: 15}
@@ -9,6 +11,24 @@ class User < ApplicationRecord
                         uniqueness: {case_sensitive: true}
 
     scope :search_by_name, -> (query = nil) { where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%")}
+
+    aasm column: :state do # default column: aasm_state
+        state :not_verified, initial: true
+        state :verified, :not_approved, :approved
+    
+        event :verify do
+          transitions from: :not_verified, to: :verified
+        end
+    
+        event :pending_approval do
+          transitions from: :verified, to: :not_approved
+        end
+  
+        event :approve do
+          transitions from: :not_approved, to: :approved
+        end
+      end
+
 end
 
 # == Schema Information
