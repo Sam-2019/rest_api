@@ -12,29 +12,29 @@ class UserController < ApplicationController
   def update
     user = User.find params[:id]
     updated_user = user.update(user_params)
-        if updated_user
-          render json: true
-        else
-          render json: false
-        end
+      if updated_user
+        render json: true
+      else
+        render json: false
+      end
   end
 
   def destroy
     user = User.find params[:id]
-    if user.destroy
-      render json:true
-  else
-      render json: user.errors, status: :unprocessable_entity
-  end
+      if user.destroy
+          render json:true
+      else
+          render json: user.errors, status: :unprocessable_entity
+      end
   end
 
   def create
     user = User.new(user_params)
-    if user.save
-        render json: user.to_json
-    else
-        render json: user.errors, status: :unprocessable_entity
-    end
+      if user.save
+          render json: user.to_json
+      else
+          render json: user.errors, status: :unprocessable_entity
+      end
   end
 
   private
