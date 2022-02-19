@@ -21,7 +21,12 @@ class InstitutionController < ApplicationController
 
   def destroy
     institution = Institution.find params[:id]
-    institution.destroy
+    if institution.destroy
+      render json: true
+  else
+      render json: institution.errors, status: :unprocessable_entity
+  end
+    
   end
 
   def create

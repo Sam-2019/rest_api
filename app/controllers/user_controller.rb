@@ -21,7 +21,11 @@ class UserController < ApplicationController
 
   def destroy
     user = User.find params[:id]
-    user.destroy
+    if user.destroy
+      render json:true
+  else
+      render json: user.errors, status: :unprocessable_entity
+  end
   end
 
   def create
