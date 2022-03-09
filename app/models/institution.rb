@@ -7,14 +7,12 @@ class Institution < ApplicationRecord
     after_update :log_update_action
     after_destroy :log_delete_action
 
-    has_many :users, dependent: :destroy
-    validates_associated :users
-
     validates :name, presence: true, length: {minimum: 3 ,maximum: 50 }
     validates :location, presence: true, length: {maximum: 50 }
 
     scope :search_by_location, -> (location = nil) { where(location: location) }
     scope :search_by_name, -> (name = nil) { where(name: name) }
+    scope :get_institution, -> (query = nil) {where(id: query)}
 
 
     aasm column: :state do # default column: aasm_state
