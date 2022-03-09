@@ -9,6 +9,8 @@ class User < ApplicationRecord
     after_update :log_update_action
     after_destroy :log_delete_action
 
+    has_many :institutions
+
     validates :first_name, presence: true, length: {minimum: 3 ,maximum: 15}
     validates :last_name, presence: true, length: {minimum: 3 ,maximum: 50}
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -37,6 +39,10 @@ class User < ApplicationRecord
         end
       end
 
+    def get_institution(id)
+      Institution.get_institution(id)
+    end
+   
     private
       
     def log_create_action
@@ -61,15 +67,17 @@ end
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  first_name :string
-#  last_name  :string
-#  email      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  state      :string
+#  id              :integer          not null, primary key
+#  first_name      :string
+#  last_name       :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  state           :string
+#  institutions_id :integer
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_email            (email) UNIQUE
+#  index_users_on_institutions_id  (institutions_id)
 #
