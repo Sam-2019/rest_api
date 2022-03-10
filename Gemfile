@@ -31,6 +31,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem 'aasm', '~> 5.2'
 gem 'after_commit_everywhere', '~> 1.0'
+gem "rswag"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -41,6 +42,8 @@ gem 'after_commit_everywhere', '~> 1.0'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails"
+  gem "rswag-specs"
 end
 
 group :development do
