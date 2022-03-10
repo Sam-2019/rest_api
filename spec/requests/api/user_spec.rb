@@ -1,24 +1,27 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/user', type: :request do
-    path "/api/v1/encounters" do
-        post "Create an Encounter" do
-          tags "Encounters"
+    path "/api/user" do
+        post "Create a User" do
+          tags "Users"
           consumes "application/json"
-          parameter name: :encounter, in: :body, schema: {
+          parameter name: :user, in: :body, schema: {
             type: :object,
             properties: {
-              patient_id: { type: :integer },
-              provider_id: { type: :integer },
+              id: { type: :integer },
+              first_name: { type: :string },
+              last_name: { type: :string },
+              email: { type: :string },
+              institutions_id: { type: :integer }
             },
-            required: ["patient_id", "provider_id"],
+            required: ["id", "first_name","last_name". "email" ],
           }
-    response "201", "encounter created" do
-            let(:encounter) { { patient_id: 10, provider_id: 1 } }
+            response "201", "user created" do
+            let(:user) { { id: 10, first_name: "Samuel", last_name: "Samuel" } }
             run_test!
           end
-    response "422", "invalid request" do
-            let(:encounter) { { patient_id: 10 } }
+            response "422", "invalid request" do
+            let(:user) { { id: 10 } }
             run_test!
           end
         end
