@@ -61,15 +61,17 @@ end
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  first_name :string
-#  last_name  :string
-#  email      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  state      :string
+#  id              :integer          not null, primary key
+#  first_name      :string
+#  last_name       :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  state           :string
+#  institutions_id :integer
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_email            (email) UNIQUE
+#  index_users_on_institutions_id  (institutions_id)
 #
