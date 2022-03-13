@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2022_02_19_214237) do
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "verified"
+    t.integer "approved"
     t.string "state"
   end
 
@@ -26,8 +28,10 @@ ActiveRecord::Schema.define(version: 2022_02_19_214237) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "verified"
+    t.integer "approved"
     t.string "state"
-    t.integer "institutions_id"
+    t.integer "institutions_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["institutions_id"], name: "index_users_on_institutions_id"
   end
