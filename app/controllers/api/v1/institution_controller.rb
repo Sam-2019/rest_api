@@ -1,4 +1,4 @@
-class InstitutionController < ApplicationController
+class Api::V1::InstitutionController < ApplicationController
   def index
     institutions = Institution.all
         render json: institutions.to_json
