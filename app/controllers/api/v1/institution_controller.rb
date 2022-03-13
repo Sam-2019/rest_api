@@ -1,4 +1,4 @@
-class InstitutionController < ApplicationController
+class Api::V1::InstitutionController < ApplicationController
   def index
     institutions = Institution.all
         render json: institutions.to_json
@@ -12,25 +12,29 @@ class InstitutionController < ApplicationController
   def update
     institution = Institution.find params[:id]
     updated_institution = institution.update(institution_params)
-        if updated_institution
-          render json: true
-        else
-          render json: false
-        end
+      if updated_institution
+        render json: true
+      else
+        render json: false
+      end
   end
 
   def destroy
     institution = Institution.find params[:id]
-    institution.destroy
+      if institution.destroy
+        render json: institution.to_json
+      else
+        render json: institution.errors, status: :unprocessable_entity
+      end
   end
 
   def create
     institution = Institution.new(institution_params)
-    if institution.save
+      if institution.save
         render json: institution.to_json
-    else
+      else
         render json: institution.errors, status: :unprocessable_entity
-    end
+      end
   end
 
   private
