@@ -7,6 +7,8 @@ class Institution < ApplicationRecord
     after_update :log_update_action
     after_destroy :log_delete_action
 
+    has_many :users
+
     validates :name, presence: true, length: {minimum: 3 ,maximum: 50 }
     validates :location, presence: true, length: {maximum: 50 }
 
