@@ -22,7 +22,7 @@ class Api::V1::UserController < ApplicationController
   def destroy
     user = User.find params[:id]
       if user.destroy
-          render json:true
+          render json:true, :status: :no_content
       else
           render json: user.errors, status: :unprocessable_entity
       end
