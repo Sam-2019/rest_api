@@ -8,12 +8,12 @@ paths:
     post:
       summary: Create a institution
       tags:
-        - institutions
+      - institutions
       parameters: []
       responses:
-        "201":
+        '201':
           description: institution created
-        "422":
+        '422':
           description: invalid request
       requestBody:
         content:
@@ -28,19 +28,52 @@ paths:
                 location:
                   type: string
               required:
+              - id
+              - name
+              - location
+  "/institutions/{id}":
+    get:
+      summary: Retrieve an institution
+      tags:
+      - institution
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: institution found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  location:
+                    type: string
+                required:
                 - id
                 - name
                 - location
+        '404':
+          description: institution not found
+        '406':
+          description: unsupported accept header
   "/api/v1/user":
     post:
       summary: Create a User
       tags:
-        - Users
+      - users
       parameters: []
       responses:
-        "201":
+        '201':
           description: user created
-        "422":
+        '422':
           description: invalid request
       requestBody:
         content:
@@ -59,12 +92,12 @@ paths:
                 institutions_id:
                   type: integer
               required:
-                - id
-                - first_name
-                - last_name
-                - email
+              - id
+              - first_name
+              - last_name
+              - email
 servers:
-  - url: http://{defaultHost}
-    variables:
-      defaultHost:
-        default: localhost:3000
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
