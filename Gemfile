@@ -32,6 +32,7 @@ gem "bootsnap", require: false
 gem 'aasm', '~> 5.2'
 gem 'after_commit_everywhere', '~> 1.0'
 gem "rswag"
+gem 'phonelib'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
