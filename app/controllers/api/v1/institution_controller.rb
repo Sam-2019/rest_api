@@ -22,7 +22,7 @@ class Api::V1::InstitutionController < ApplicationController
   def destroy
     institution = Institution.find params[:id]
       if institution.destroy
-        render json: institution.to_json
+        render json: true,  status: :no_content
       else
         render json: institution.errors, status: :unprocessable_entity
       end
