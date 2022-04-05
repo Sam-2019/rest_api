@@ -33,7 +33,7 @@ gem 'aasm', '~> 5.2'
 gem 'after_commit_everywhere', '~> 1.0'
 gem 'phonelib'
 gem "valid_email2"
-gem "administrate"
+# gem "administrate"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
