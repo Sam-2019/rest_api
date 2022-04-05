@@ -47,7 +47,7 @@ RSpec.describe 'api/v1/user', type: :request do
       #         },
       #         required: ['id', 'first_name', 'last_name', 'email', 'institution_id' ],
     
-      #         let(:id) { user.create(first_name: 'Major', last_name: 'Martey', email: 'major@gmail.com', institution_id: 26 ).id }
+      #         let(:id) { User.create(first_name: 'Major', last_name: 'Martey', email: 'major@gmail.com', institution_id: 26 ).id }
       #       run_test!
       #     end
     

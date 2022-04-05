@@ -41,7 +41,7 @@ RSpec.describe 'api/v1/institution', type: :request do
               },
               required: [ 'id', 'name', 'location' ]
     
-            let(:id) { institution.create(name: 'MIT', location: 'Massachusetts').id }
+            let(:id) { Institution.create(name: 'MIT', location: 'Massachusetts').id }
             run_test!
           end
     
