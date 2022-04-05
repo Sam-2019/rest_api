@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     end
   end
 
+  # namespace :admin do
+  #   resources :name, only: %i(index show new create edit update destroy)
+  # end
+
   # get 'institution/index'
   # get 'institution/show'
   # patch 'institution/update'
