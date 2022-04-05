@@ -14,7 +14,7 @@ class Institution < ApplicationRecord
 
     scope :search_by_location, -> (location = nil) { where(location: location) }
     scope :search_by_name, -> (name = nil) { where(name: name) }
-    scope :get_institution, -> (query = nil) {where(id: query)}
+    scope :get_institution, -> (query = nil) { where(id: query) }
 
 
     aasm column: :state do # default column: aasm_state
