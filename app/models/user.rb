@@ -15,8 +15,7 @@ class User < ApplicationRecord
 
     validates :first_name, presence: true, length: {minimum: 3 ,maximum: 15}
     validates :last_name, presence: true, length: {minimum: 3 ,maximum: 50}
-    validates :email, presence: true, uniqueness: {case_sensitive: false}, 
-                      'valid_email_2/email': { mx: true, disposable: true }, 
+    validates :email, presence: true, uniqueness: {case_sensitive: false},'valid_email_2/email': { mx: true, disposable: true }
 
     scope :search_by_name, -> (query = nil) { where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%") }
 
