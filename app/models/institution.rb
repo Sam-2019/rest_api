@@ -54,7 +54,6 @@ class Institution < ApplicationRecord
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
     end
 
-    
     def institution_name
       "#{name}"
     end
