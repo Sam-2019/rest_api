@@ -60,6 +60,13 @@ class User < ApplicationRecord
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
     end
 
+    def user_name
+      "#{first_name} #{last_name}"
+    end
+
+    def user_email
+      "#{email}"
+    end
 end
 
 # == Schema Information

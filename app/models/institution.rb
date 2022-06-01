@@ -53,7 +53,19 @@ class Institution < ApplicationRecord
     def log_status_change
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
     end
-  
+
+    
+    def institution_name
+      "#{name}"
+    end
+
+    def institution_location
+      "#{location}"
+    end
+
+    def institution_state
+      "#{state}"
+    end
 end
 
 # == Schema Information
