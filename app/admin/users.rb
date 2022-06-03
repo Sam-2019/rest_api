@@ -1,7 +1,7 @@
 ActiveAdmin.register User, as: "People" do
   menu priority: 2, label: proc { I18n.t("active_admin.users") }
   permit_params :first_name, :last_name, :email, :institution_id
-  actions :all, except: [:update, :destroy]
+  actions :all, except: [:destroy]
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

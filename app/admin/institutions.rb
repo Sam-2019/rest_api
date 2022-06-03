@@ -1,7 +1,7 @@
 ActiveAdmin.register Institution do
   menu priority: 1, label: proc { I18n.t("active_admin.institutions") }
   permit_params :name, :location
-  actions :all, except: [:update, :destroy]
+  actions :all, except: [:destroy]
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
