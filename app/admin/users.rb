@@ -17,5 +17,17 @@ ActiveAdmin.register User, as: "People" do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+
+  form do |f|
+    f.inputs 'Details' do
+      f.input :first_name
+      f.input :last_name
+      f.input :email
+      f.input :institution
+      f.input :state, as: :select, collection: %w[ not_verified verified not_approved approved ]
+    end
+    f.actions
+  end
   
 end
