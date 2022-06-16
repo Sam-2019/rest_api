@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
 
@@ -8,6 +9,10 @@ Rails.application.routes.draw do
       resources :institution, :user
     end
   end
+
+  # namespace :admin do
+  #   resources :name, only: %i(index show new create edit update destroy)
+  # end
 
   # get 'institution/index'
   # get 'institution/show'

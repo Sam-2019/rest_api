@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     include AASM
+    
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
     before_save {self.email = email.downcase}
 
@@ -13,12 +15,9 @@ class User < ApplicationRecord
 
     validates :first_name, presence: true, length: {minimum: 3 ,maximum: 15}
     validates :last_name, presence: true, length: {minimum: 3 ,maximum: 50}
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-    validates :email, presence: true, length: {maximum: 250},
-                        format: {with: VALID_EMAIL_REGEX}, 
-                        uniqueness: {case_sensitive: false}
+    validates :email, presence: true, uniqueness: {case_sensitive: false},'valid_email_2/email': { mx: true, disposable: true }
 
-    scope :search_by_name, -> (query = nil) { where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%")}
+    scope :search_by_name, -> (query = nil) { where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%") }
 
     aasm column: :state do # default column: aasm_state
         state :not_verified, initial: true
@@ -61,21 +60,30 @@ class User < ApplicationRecord
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
     end
 
+    def user_name
+      "#{first_name} #{last_name}"
+    end
+
+    def user_email
+      "#{email}"
+    end
 end
 
 # == Schema Information
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  first_name :string
-#  last_name  :string
-#  email      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  state      :string
+#  id             :integer          not null, primary key
+#  first_name     :string
+#  last_name      :string
+#  email          :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  state          :string
+#  institution_id :integer
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_email           (email) UNIQUE
+#  index_users_on_institution_id  (institution_id)
 #

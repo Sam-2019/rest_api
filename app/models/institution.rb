@@ -14,7 +14,7 @@ class Institution < ApplicationRecord
 
     scope :search_by_location, -> (location = nil) { where(location: location) }
     scope :search_by_name, -> (name = nil) { where(name: name) }
-    scope :get_institution, -> (query = nil) {where(id: query)}
+    scope :get_institution, -> (query = nil) { where(id: query) }
 
 
     aasm column: :state do # default column: aasm_state
@@ -53,7 +53,18 @@ class Institution < ApplicationRecord
     def log_status_change
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
     end
-  
+
+    def institution_name
+      "#{name}"
+    end
+
+    def institution_location
+      "#{location}"
+    end
+
+    def institution_state
+      "#{state}"
+    end
 end
 
 # == Schema Information
