@@ -81,6 +81,7 @@ end
 #  updated_at     :datetime         not null
 #  state          :string
 #  institution_id :integer
+#  user_id        :string
 #
 # Indexes
 #
