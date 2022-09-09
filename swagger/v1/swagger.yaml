@@ -4,11 +4,11 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/institution":
+  "/institution":
     post:
-      summary: Create a institution
+      summary: Create an institution
       tags:
-      - institutions
+      - Institution
       parameters: []
       responses:
         '201':
@@ -31,44 +31,24 @@ paths:
               - id
               - name
               - location
-  "/institutions/{id}":
+  "/institution/{id}":
     get:
       summary: Retrieve an institution
       tags:
-      - institution
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+      - Institution
+      parameters: []
       responses:
         '200':
           description: institution found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  location:
-                    type: string
-                required:
-                - id
-                - name
-                - location
         '404':
           description: institution not found
         '406':
           description: unsupported accept header
-  "/api/v1/user":
+  "/user":
     post:
       summary: Create a User
       tags:
-      - users
+      - User
       parameters: []
       responses:
         '201':
@@ -89,13 +69,49 @@ paths:
                   type: string
                 email:
                   type: string
-                institutions_id:
+                institution_id:
                   type: integer
               required:
               - id
               - first_name
               - last_name
               - email
+  "/user/{id}":
+    get:
+      summary: Retrieve an user
+      tags:
+      - User
+      parameters:
+      - name: id
+        in: path
+        type: string
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+            institution_id:
+              type: integer
+          required:
+          - id
+          - first_name
+          - last_name
+          - email
+          - institution_id
+        required: true
+      responses:
+        '200':
+          description: user found
+        '404':
+          description: user not found
+        '406':
+          description: unsupported accept header
 servers:
 - url: https://{defaultHost}
   variables:

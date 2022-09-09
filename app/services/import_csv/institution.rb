@@ -1,4 +1,4 @@
-class DataImport
+class InstitutionImport
     include CSVImporter
 
     model Institution

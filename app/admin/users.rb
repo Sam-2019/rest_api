@@ -18,6 +18,23 @@ ActiveAdmin.register User, as: "People" do
   #   permitted
   # end
 
+  filter :user_id, as: :string, label: "Student ID"
+  filter :first_name, as: :string, label: "First Name"
+  filter :last_name, as: :string, label: "Last Name"
+  filter :email, as: :string, label: "Email"
+
+  index do
+    id_column
+    column :user_id
+    column :first_name
+    column :last_name
+    column :email
+    column :institution
+    # column :created_at
+    # column :updated_at
+    actions
+  end
+
 
   form do |f|
     f.inputs 'Details' do
@@ -25,7 +42,7 @@ ActiveAdmin.register User, as: "People" do
       f.input :last_name
       f.input :email
       f.input :institution
-      f.input :state, as: :select, collection: %w[ not_verified verified not_approved approved ]
+      # f.input :state, as: :select, collection: %w[ not_verified verified not_approved approved ]
     end
     f.actions
   end

@@ -18,11 +18,23 @@ ActiveAdmin.register Institution do
   #   permitted
   # end
 
+  filter :name, as: :string, label: "Name"
+  filter :location, as: :string, label: "Location"
+
+  index do
+    id_column
+    column :name
+    column :location
+    # column :created_at
+    # column :updated_at
+    actions
+  end
+
   form do |f|
     f.inputs 'Details' do
       f.input :name
       f.input :location
-      f.input :state, as: :select, collection: %w[ not_verified verified not_approved approved ]
+      # f.input :state, as: :select, collection: %w[ not_verified verified not_approved approved ]
     end
     f.actions
   end

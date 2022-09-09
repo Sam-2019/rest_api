@@ -48,6 +48,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_decorator (1.4.0)
+      activesupport
     activeadmin (2.13.1)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
@@ -209,6 +211,8 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.1)
@@ -307,7 +311,7 @@ GEM
     timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2021.5)
+    tzinfo-data (1.2022.1)
       tzinfo (>= 1.0.0)
     valid_email2 (4.0.3)
       activemodel (>= 3.2)
@@ -329,6 +333,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm (~> 5.2)
+  active_decorator
   activeadmin
   after_commit_everywhere (~> 1.0)
   annotate
@@ -342,10 +347,13 @@ DEPENDENCIES
   phonelib
   puma (~> 5.0)
   pundit
+  rack-cors
   rails (~> 7.0.1)
   rspec-rails
   rswag
+  rswag-api
   rswag-specs
+  rswag-ui
   sass-rails
   sprockets
   sqlite3 (~> 1.4)
@@ -353,7 +361,7 @@ DEPENDENCIES
   valid_email2
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.0.2p107
 
 BUNDLED WITH
    2.2.22
