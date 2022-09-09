@@ -48,6 +48,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_decorator (1.4.0)
+      activesupport
     activeadmin (2.13.1)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
@@ -178,7 +180,6 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.7.1)
     minitest (5.15.0)
     msgpack (1.5.2)
     net-imap (0.2.3)
@@ -197,8 +198,9 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.1)
-      mini_portile2 (~> 2.7.0)
+    nokogiri (1.13.1-x64-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.13.1-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     phonelib (0.6.57)
@@ -331,6 +333,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm (~> 5.2)
+  active_decorator
   activeadmin
   after_commit_everywhere (~> 1.0)
   annotate
@@ -358,7 +361,7 @@ DEPENDENCIES
   valid_email2
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.0.2p107
 
 BUNDLED WITH
    2.2.22
