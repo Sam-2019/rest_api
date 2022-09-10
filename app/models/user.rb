@@ -5,13 +5,12 @@ class User < ApplicationRecord
 
     before_save {self.email = email.downcase}
 
-    after_create :log_create_action
-    after_save :log_create_action
+    after_commit :log_commit_action
 
     after_update :log_update_action
     after_destroy :log_delete_action
 
-    belongs_to :institution
+    has_one :institution
 
     validates :first_name, presence: true, length: {minimum: 3 ,maximum: 15}
     validates :last_name, presence: true, length: {minimum: 3 ,maximum: 50}
@@ -37,16 +36,16 @@ class User < ApplicationRecord
         event :approve do
           transitions from: :not_approved, to: :approved
         end
-      end
+    end
 
     def get_institution(id)
       Institution.get_institution(id)
     end
    
     private
-      
-    def log_create_action
-      puts 'User created'
+
+    def log_commit_action
+      puts 'User saved'
     end
 
     def log_update_action
@@ -59,14 +58,6 @@ class User < ApplicationRecord
 
     def log_status_change
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
-    end
-
-    def user_name
-      "#{first_name} #{last_name}"
-    end
-
-    def user_email
-      "#{email}"
     end
 end
 
