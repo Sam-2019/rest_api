@@ -4,116 +4,110 @@ info:
   title: API V1
   version: v1
 paths:
-  "/institution":
-    post:
-      summary: Create an institution
-      tags:
-      - Institution
-      parameters: []
-      responses:
-        '201':
-          description: institution created
-        '422':
-          description: invalid request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                name:
-                  type: string
-                location:
-                  type: string
-              required:
-              - id
-              - name
-              - location
-  "/institution/{id}":
+  "/api/v1/institution":
     get:
-      summary: Retrieve an institution
+      summary: list institutions
       tags:
       - Institution
-      parameters: []
       responses:
         '200':
-          description: institution found
-        '404':
-          description: institution not found
-        '406':
-          description: unsupported accept header
-  "/user":
+          description: successful
     post:
-      summary: Create a User
+      summary: create institution
       tags:
-      - User
-      parameters: []
+      - Institution
       responses:
-        '201':
-          description: user created
-        '422':
-          description: invalid request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                first_name:
-                  type: string
-                last_name:
-                  type: string
-                email:
-                  type: string
-                institution_id:
-                  type: integer
-              required:
-              - id
-              - first_name
-              - last_name
-              - email
-  "/user/{id}":
-    get:
-      summary: Retrieve an user
-      tags:
-      - User
-      parameters:
-      - name: id
-        in: path
+        '200':
+          description: successful
+  "/api/v1/institution/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
         type: string
-        schema:
-          type: object
-          properties:
-            id:
-              type: integer
-            first_name:
-              type: string
-            last_name:
-              type: string
-            email:
-              type: string
-            institution_id:
-              type: integer
-          required:
-          - id
-          - first_name
-          - last_name
-          - email
-          - institution_id
-        required: true
+    get:
+      summary: show institution
+      tags:
+      - Institution
       responses:
         '200':
-          description: user found
-        '404':
-          description: user not found
-        '406':
-          description: unsupported accept header
+          description: successful
+    patch:
+      summary: update institution
+      tags:
+      - Institution
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update institution
+      tags:
+      - Institution
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete institution
+      tags:
+      - Institution
+      responses:
+        '200':
+          description: successful
+  "/api/v1/user":
+    get:
+      summary: list users
+      tags:
+      - User
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create user
+      tags:
+      - User
+      responses:
+        '200':
+          description: successful
+  "/api/v1/user/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      tags:
+      - User
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user
+      tags:
+      - User
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update user
+      tags:
+      - User
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete user
+      tags:
+      - User
+      responses:
+        '200':
+          description: successful
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
       default: localhost:3000
