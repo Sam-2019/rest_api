@@ -15,14 +15,14 @@ class Api::V1::UserController < ApiController
       if updated_user
         render json: true, status: :created
       else
-        render json: , status: :unprocessable_entity
+        render json: true, status: :unprocessable_entity
       end
   end
 
   def destroy
     user = User.find params[:id]
       if user.destroy
-          render json:true, :status: :no_content
+          render json: true, status: :no_content
       else
           render json: user.errors, status: :unprocessable_entity
       end

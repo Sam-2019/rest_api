@@ -62,6 +62,9 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
   gem "rswag-specs"
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
 end
 
 group :development do

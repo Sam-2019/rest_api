@@ -1,8 +1,7 @@
 class Institution < ApplicationRecord
     include AASM
 
-    after_create :log_create_action
-    after_save :log_create_action
+    after_commit :log_commit_action
 
     after_update :log_update_action
     after_destroy :log_delete_action
@@ -36,10 +35,10 @@ class Institution < ApplicationRecord
       end
     end
 
-    private
+    private 
 
-    def log_create_action
-      puts 'Institution created'
+    def log_commit_action
+      puts 'Institution saved'
     end
 
     def log_update_action
@@ -52,18 +51,6 @@ class Institution < ApplicationRecord
 
     def log_status_change
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
-    end
-
-    def institution_name
-      "#{name}"
-    end
-
-    def institution_location
-      "#{location}"
-    end
-
-    def institution_state
-      "#{state}"
     end
 end
 
