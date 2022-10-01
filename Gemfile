@@ -16,7 +16,7 @@ gem "puma", "~> 5.0"
 # gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -33,7 +33,6 @@ gem 'aasm', '~> 5.2'
 gem 'after_commit_everywhere', '~> 1.0'
 gem 'phonelib'
 gem "valid_email2"
-# gem "administrate"
 
 gem 'activeadmin'
 
@@ -82,3 +81,5 @@ group :development do
   gem "rswag"
 end
 
+
+gem "sidekiq", "~> 6.5"
