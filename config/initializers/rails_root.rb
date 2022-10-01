@@ -1,0 +1,1 @@
+RAILS_ROOT_PATH = Rails.root
