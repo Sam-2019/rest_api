@@ -28,7 +28,13 @@ module InfoPdf
        }
   
       @document = Prawn::Document.new(page_size: "A5", page_layout: :landscape, info: info)
-      @document.text 'Hello World'
+      @document.font_families.update("Montserrat" => {
+        :normal => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Regular.ttf"),
+        :italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Italic.ttf"),
+        :bold => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Bold.ttf"),
+        :bold_italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-BoldItalic.ttf"),
+      })
+      @document.text "Hello #{@user}"
       @document.render_file @filepath
     end
   end
