@@ -10,7 +10,7 @@ class User < ApplicationRecord
     after_update :log_update_action
     after_destroy :log_delete_action
 
-    has_one :institution
+    belongs_to :institution
 
     validates :first_name, presence: true, length: {minimum: 3 ,maximum: 15}
     validates :last_name, presence: true, length: {minimum: 3 ,maximum: 50}
