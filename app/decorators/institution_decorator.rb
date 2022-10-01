@@ -4,7 +4,7 @@ module InstitutionDecorator
   end
 
   def institution_location
-    "#{email}"
+    "#{location}"
   end
 
   def current_state
