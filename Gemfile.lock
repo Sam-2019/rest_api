@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/nukturnal/prawn-qrcode.git
+  revision: 45f27976c1bb59785ccb4b6e791d67071f99f691
+  specs:
+    prawn-qrcode (0.5.2)
+      prawn (>= 1)
+      rqrcode (>= 1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -94,10 +102,6 @@ GEM
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
-    axiom-types (0.1.1)
-      descendants_tracker (~> 0.0.4)
-      ice_nine (~> 0.11.0)
-      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.18)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -111,12 +115,9 @@ GEM
     caxlsx_rails (0.6.3)
       actionpack (>= 3.1)
       caxlsx (>= 3.0)
-    coercible (1.0.0)
-      descendants_tracker (~> 0.0.1)
+    chunky_png (1.4.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    csv-importer (0.8.1)
-      virtus
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
@@ -126,8 +127,6 @@ GEM
     debug (1.4.0)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
-    descendants_tracker (0.0.4)
-      thread_safe (~> 0.3, >= 0.3.1)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -165,7 +164,6 @@ GEM
     htmlentities (4.3.4)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    ice_nine (0.11.2)
     inherited_resources (1.13.1)
       actionpack (>= 5.2, < 7.1)
       has_scope (~> 0.6)
@@ -224,7 +222,13 @@ GEM
     nokogiri (1.13.1-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pdf-core (0.9.0)
     phonelib (0.6.57)
+    prawn (2.4.0)
+      pdf-core (~> 0.9.0)
+      ttfunk (~> 1.7)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
@@ -274,6 +278,10 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rqrcode (2.1.2)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.0)
@@ -334,9 +342,9 @@ GEM
     sqlite3 (1.4.2)
     strscan (3.0.1)
     thor (1.2.1)
-    thread_safe (0.3.6)
     tilt (2.0.10)
     timeout (0.2.0)
+    ttfunk (1.7.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2022.1)
@@ -344,10 +352,6 @@ GEM
     valid_email2 (4.0.3)
       activemodel (>= 3.2)
       mail (~> 2.5)
-    virtus (2.0.0)
-      axiom-types (~> 0.1)
-      coercible (~> 1.0)
-      descendants_tracker (~> 0.0, >= 0.0.3)
     warden (1.2.9)
       rack (>= 2.0.9)
     websocket-driver (0.7.5)
@@ -369,7 +373,6 @@ DEPENDENCIES
   cancancan
   caxlsx
   caxlsx_rails
-  csv-importer
   database_cleaner
   debug
   devise
@@ -378,6 +381,9 @@ DEPENDENCIES
   factory_bot_rails
   faker
   phonelib
+  prawn
+  prawn-qrcode!
+  prawn-table
   puma (~> 5.0)
   pundit
   rack-cors

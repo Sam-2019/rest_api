@@ -44,7 +44,7 @@ gem 'draper'
 gem 'pundit'
 gem 'sprockets'
 gem 'sass-rails'
-gem 'csv-importer'
+# gem 'csv-importer'
 gem 'rswag-api'
 gem 'rswag-ui'
 gem 'active_decorator'
@@ -56,6 +56,9 @@ gem 'caxlsx_rails'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
+gem 'prawn'
+gem 'prawn-qrcode', github: 'nukturnal/prawn-qrcode'
+gem 'prawn-table'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -66,7 +69,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'simplecov', require: false
-  gem "rubycritic", require: false
+  # gem "rubycritic", require: false
 end
 
 group :development do
