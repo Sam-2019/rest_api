@@ -71,6 +71,7 @@ group :development, :test do
   gem 'simplecov', require: false
   # gem "rubycritic", require: false
   gem "letter_opener"
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :development do
