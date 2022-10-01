@@ -6,7 +6,11 @@ class Api::V1::UserController < ApiController
 
   def show
     user = User.find params[:id]
+    if user
       render json: user.to_json
+    else
+      render json: user.errors.full_messages.to_sentence, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -26,7 +30,7 @@ class Api::V1::UserController < ApiController
         UserMailer.account_destroy_email(user).deliver_later
         render json: true, status: :no_content
       else
-          render json: user.errors, status: :unprocessable_entity
+          render json: user.errors.full_messages.to_sentence, status: :unprocessable_entity
       end
   end
 
@@ -36,7 +40,7 @@ class Api::V1::UserController < ApiController
         UserMailer.welcome_email(user).deliver_later
         render json: user.to_json, status: :created
       else
-        render json: user.errors, status: :unprocessable_entity
+        render json: user.errors.full_messages.to_sentence, status: :unprocessable_entity
       end
   end
 
