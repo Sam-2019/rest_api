@@ -36,3 +36,4 @@ db/test.*
 waste
 /coverage
 spec/examples.txt
+pdf_downloads/Hello-name.pdf
