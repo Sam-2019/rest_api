@@ -34,3 +34,6 @@
 # Ignore db test files.
 db/test.*
 waste
+/coverage
+spec/examples.txt
+pdf_downloads

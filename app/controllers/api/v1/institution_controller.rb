@@ -6,7 +6,11 @@ class Api::V1::InstitutionController < ApiController
 
   def show
     institution = Institution.find params[:id]
-        render json: institution.to_json
+    if institution
+      render json: institution.to_json
+    else
+      render json: institution.errors.full_messages.to_sentence, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -24,7 +28,7 @@ class Api::V1::InstitutionController < ApiController
       if institution.destroy
         render json: true,  status: :no_content
       else
-        render json: institution.errors, status: :unprocessable_entity
+        render json: institution.errors.full_messages.to_sentence, status: :unprocessable_entity
       end
   end
 
@@ -33,7 +37,7 @@ class Api::V1::InstitutionController < ApiController
       if institution.save
         render json: institution.to_json, status: :created
       else
-        render json: institution.errors, status: :unprocessable_entity
+        render json: institution.errors.full_messages.to_sentence, status: :unprocessable_entity
       end
   end
 

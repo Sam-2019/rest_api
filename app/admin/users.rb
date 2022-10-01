@@ -2,6 +2,8 @@ ActiveAdmin.register User, as: "People" do
   menu priority: 2, label: proc { I18n.t("active_admin.users") }
   permit_params :first_name, :last_name, :email, :institution_id
   actions :all, except: [:destroy]
+  includes :institution
+  belongs_to :institution, optional: true
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -25,7 +27,6 @@ ActiveAdmin.register User, as: "People" do
 
   index do
     id_column
-    column :user_id
     column :first_name
     column :last_name
     column :email
@@ -35,8 +36,20 @@ ActiveAdmin.register User, as: "People" do
     actions
   end
 
+  show do
+    attributes_table do
+      row :first_name
+      row :last_name
+      row :email
+      row :institution
+      row :state
+      row :created_at
+      row :updated_at
+    end
+  end
 
   form do |f|
+    f.semantic_errors *f.object.errors.attribute_names
     f.inputs 'Details' do
       f.input :first_name
       f.input :last_name

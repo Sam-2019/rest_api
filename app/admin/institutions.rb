@@ -2,6 +2,7 @@ ActiveAdmin.register Institution do
   menu priority: 1, label: proc { I18n.t("active_admin.institutions") }
   permit_params :name, :location
   actions :all, except: [:destroy]
+  includes :user
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -30,7 +31,18 @@ ActiveAdmin.register Institution do
     actions
   end
 
+  show do
+    attributes_table do
+      row :name
+      row :location
+      row :state
+      row :created_at
+      row :updated_at
+    end
+  end
+
   form do |f|
+    f.semantic_errors *f.object.errors.attribute_names
     f.inputs 'Details' do
       f.input :name
       f.input :location

@@ -16,7 +16,7 @@ gem "puma", "~> 5.0"
 # gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -33,7 +33,6 @@ gem 'aasm', '~> 5.2'
 gem 'after_commit_everywhere', '~> 1.0'
 gem 'phonelib'
 gem "valid_email2"
-# gem "administrate"
 
 gem 'activeadmin'
 
@@ -44,7 +43,7 @@ gem 'draper'
 gem 'pundit'
 gem 'sprockets'
 gem 'sass-rails'
-gem 'csv-importer'
+# gem 'csv-importer'
 gem 'rswag-api'
 gem 'rswag-ui'
 gem 'active_decorator'
@@ -56,6 +55,9 @@ gem 'caxlsx_rails'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
+gem 'prawn'
+gem 'prawn-qrcode', github: 'nukturnal/prawn-qrcode'
+gem 'prawn-table'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -65,6 +67,10 @@ group :development, :test do
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'simplecov', require: false
+  # gem "rubycritic", require: false
+  gem "letter_opener"
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :development do
@@ -75,3 +81,5 @@ group :development do
   gem "rswag"
 end
 
+
+gem "sidekiq", "~> 6.5"
