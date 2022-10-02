@@ -6,7 +6,7 @@ module InfoPdf
 
     def initialize(user)
       @user = user
-      @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@user}-name.pdf"
+      @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@user}.pdf"
       get_pdf
     end
   
@@ -18,7 +18,7 @@ module InfoPdf
   
     def write_pdf
       info = {
-        Title: "#{@user}-name.pdf",
+        Title: "#{@user}.pdf",
         Author: 'Rest API',
         Subject: 'My Subject',
         Keywords: 'test metadata ruby pdf dry',
