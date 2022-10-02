@@ -5,6 +5,7 @@ RSpec.describe User, type: :model do
   let(:user_without_first_name) { build(:user, first_name: nil) }
   let(:user_without_last_name) { build(:user, last_name: nil) }
   let(:user_without_email) { build(:user, email: nil) }
+  let(:verified_user) { build(:user, state: 'verified') }
 
   describe "Validation" do
     it "without first name" do
@@ -26,6 +27,10 @@ RSpec.describe User, type: :model do
 
     it "with valid attributes" do
       expect(user.valid?).to be true
+    end
+
+    it "verified" do
+      expect(verified_user.state).to eq("verified")
     end
   end
 end
