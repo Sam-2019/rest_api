@@ -9,5 +9,7 @@ FactoryBot.define do
     sequence :email do |n|
       "email+#{n}@example.com"
     end
+    
+    state { "not_verified" }
   end
 end

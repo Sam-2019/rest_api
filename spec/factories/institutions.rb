@@ -7,5 +7,7 @@ FactoryBot.define do
     sequence :location do |n|
       "World+#{n}"
     end
+
+    state { "not_verified" }
   end
 end
