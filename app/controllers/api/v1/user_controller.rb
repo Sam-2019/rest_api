@@ -9,7 +9,7 @@ class Api::V1::UserController < ApiController
     if user
       render json: user.to_json
     else
-      render json: user.errors.full_messages.to_sentence, status: :unprocessable_entity
+      render_error(user)
     end
   end
 
@@ -30,7 +30,7 @@ class Api::V1::UserController < ApiController
         UserMailer.account_destroy_email(user).deliver_later
         render json: true, status: :no_content
       else
-          render json: user.errors.full_messages.to_sentence, status: :unprocessable_entity
+        render_error(user)
       end
   end
 
@@ -40,7 +40,7 @@ class Api::V1::UserController < ApiController
         UserMailer.welcome_email(user).deliver_later
         render json: user.to_json, status: :created
       else
-        render json: user.errors.full_messages.to_sentence, status: :unprocessable_entity
+        render_error(user)
       end
   end
 
@@ -50,4 +50,7 @@ class Api::V1::UserController < ApiController
     params.permit(:first_name, :last_name, :email, :institution_id)
   end
 
+  def render_error(data)
+    render json: data.errors.full_messages.to_sentence, status: :unprocessable_entity
+  end
 end
