@@ -16,16 +16,19 @@ class UserMailer < ApplicationMailer
     end
 
     def profile_update_email(user)
-        @user = ActiveDecorator::Decorator.instance.decorate(user)
-        return false if @user.email.blank? && @user.name.blank?
-
-        mail(to: "#{@user.name} <#{@user.email}>", subject: 'Profile Update')
+        build(user, "Profile Update")
     end
 
     def account_destroy_email(user)
-        @user = ActiveDecorator::Decorator.instance.decorate(user)
-        return false if @user.email.blank? && @user.name.blank?
+        build(user, "Account Deletion")
+    end
 
-        mail(to: "#{@user.name} <#{@user.email}>", subject: 'Account Deletion')
+    private
+
+    def build(user, subject)
+        @user = ActiveDecorator::Decorator.instance.decorate(user)
+        return false if @user.email.blank? && @user.name.blank? 
+
+        mail(to: "#{@user.name} <#{@user.email}>", subject: subject)
     end
 end
