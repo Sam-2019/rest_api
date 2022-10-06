@@ -49,8 +49,12 @@ module InfoPdf
         }
     end
 
+    def prawnDoc
+      Prawn::Document.new(page_size: "A5", page_layout: :landscape, info: metadata)
+    end
+
     def write_pdf
-      @document = Prawn::Document.new(page_size: "A5", page_layout: :landscape, info: metadata)
+      @document = prawnDoc
       @document.font_families.update("Montserrat" => {
         :normal => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Regular.ttf"),
         :italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Italic.ttf"),
