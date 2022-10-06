@@ -15,29 +15,26 @@ module InfoPdf
         unless FileTest.exist?(@filepath)
           write_pdf
       end
-   end
-  
-    def write_pdf
+    end
+
+   def metadata
       info = {
-        Title: "#{@user}.pdf",
+        Title: "#{@institution}-name.pdf",
         Author: 'Rest API',
         Subject: 'My Subject',
         Keywords: 'test metadata ruby pdf dry',
         Creator: 'Rest API App',
         Producer: 'Prawn',
         CreationDate: Time.now
-       }
-  
-      @document = Prawn::Document.new(page_size: "A5", page_layout: :landscape, info: info)
-      @document.font_families.update("Montserrat" => {
-        :normal => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Regular.ttf"),
-        :italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Italic.ttf"),
-        :bold => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Bold.ttf"),
-        :bold_italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-BoldItalic.ttf"),
-      })
+        }
+    end
 
+    def prawnDoc
+      Prawn::Document.new(page_size: "A5", page_layout: :landscape, info: metadata)
+    end
+
+    def header_line
       timestamp = Time.current
-
       @document.bounding_box [@document.bounds.left, @document.bounds.top], width: @document.bounds.width do
         @document.stroke_color "cbcdd1"
         @document.stroke_horizontal_rule
@@ -45,7 +42,18 @@ module InfoPdf
         @document.font "Courier"
         @document.text "#{timestamp.strftime("%A, %d %b %Y at %-I:M %p")} / #{SecureRandom.hex}", size: 7, character_spacing:1, color:"999999"
       end
+    end
+  
+    def write_pdf
+      @document = prawnDoc
+      @document.font_families.update("Montserrat" => {
+        :normal => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Regular.ttf"),
+        :italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Italic.ttf"),
+        :bold => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Bold.ttf"),
+        :bold_italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-BoldItalic.ttf"),
+      })
 
+      header_line
       @document.move_down(5)
       @document.text "Hello #{@user}"
       @document.render_file @filepath
