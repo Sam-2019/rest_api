@@ -35,11 +35,14 @@ module InfoPdf
         :bold => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Bold.ttf"),
         :bold_italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-BoldItalic.ttf"),
       })
-      canva = @document.canvas do
-        @document.fill_circle [@document.bounds.left, @document.bounds.top], 30
-        @document.fill_circle [@document.bounds.right, @document.bounds.top], 30
-        @document.fill_circle [@document.bounds.right, @document.bounds.bottom], 30
-        @document.fill_circle [0, 0], 30
+
+      def canvas
+          @document.canvas do
+          @document.fill_circle [@document.bounds.left, @document.bounds.top], 30
+          @document.fill_circle [@document.bounds.right, @document.bounds.top], 30
+          @document.fill_circle [@document.bounds.right, @document.bounds.bottom], 30
+          @document.fill_circle [0, 0], 30
+        end
       end
 
       timestamp = Time.current
@@ -54,7 +57,7 @@ module InfoPdf
       @document.move_down(5)
       @document.font "Montserrat"
       @document.text "Hello #{@institution}", align: :left
-      canva
+      canvas
 
       @document.start_new_page
       @document.bounding_box [@document.bounds.left, @document.bounds.top], width: @document.bounds.width do
@@ -67,12 +70,7 @@ module InfoPdf
       @document.move_down(5)
       @document.font "Courier"
       @document.text "See. We've left the previous page behind.", align: :right
-      @document.canvas do
-        @document.fill_circle [@document.bounds.left, @document.bounds.top], 30
-        @document.fill_circle [@document.bounds.right, @document.bounds.top], 30
-        @document.fill_circle [@document.bounds.right, @document.bounds.bottom], 30
-        @document.fill_circle [0, 0], 30
-      end
+      canvas
 
       @document.render_file @filepath
     end
