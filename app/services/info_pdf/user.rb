@@ -19,7 +19,7 @@ module InfoPdf
 
    def metadata
       info = {
-        Title: "#{@institution}-name.pdf",
+        Title: "#{@user}-name.pdf",
         Author: 'Rest API',
         Subject: 'My Subject',
         Keywords: 'test metadata ruby pdf dry',
