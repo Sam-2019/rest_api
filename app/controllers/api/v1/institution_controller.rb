@@ -9,7 +9,7 @@ class Api::V1::InstitutionController < ApiController
     if institution
       render json: institution.to_json
     else
-      render json: institution.errors.full_messages.to_sentence, status: :unprocessable_entity
+      render_error(institution)
     end
   end
 
@@ -30,7 +30,7 @@ class Api::V1::InstitutionController < ApiController
         InstitutionMailer.account_destroy_email(institution).deliver_later
         render json: true,  status: :no_content
       else
-        render json: institution.errors.full_messages.to_sentence, status: :unprocessable_entity
+        render_error(institution)
       end
   end
 
@@ -40,7 +40,7 @@ class Api::V1::InstitutionController < ApiController
         InstitutionMailer.welcome_email(institution).deliver_later
         render json: institution.to_json, status: :created
       else
-        render json: institution.errors.full_messages.to_sentence, status: :unprocessable_entity
+        render_error(institution)
       end
   end
 
@@ -48,6 +48,10 @@ class Api::V1::InstitutionController < ApiController
 
   def institution_params
     params.permit(:name, :location)
+  end
+
+  def render_error(data)
+    render json: data.errors.full_messages.to_sentence, status: :unprocessable_entity
   end
 
 end
