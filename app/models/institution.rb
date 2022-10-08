@@ -11,13 +11,15 @@ class Institution < ApplicationRecord
     validates :name, presence: true, length: {minimum: 3 ,maximum: 50 }
     validates :location, presence: true, length: {maximum: 50 }
 
-    scope :search_by_location, -> (location = nil) { where(location: location) }
-    scope :search_by_name, -> (name = nil) { where(name: name) }
-    scope :get_institution, -> (query = nil) { where(id: query) }
-    scope :verified, -> (query = "verified") { where(state: query) }
-    scope :not_verified, -> (query = "not_verified") { where(state: query) }
-    scope :approved, -> (query = "approved") { where(state: query) }
-    scope :not_approved, -> (query = "not_approved") { where(state: query) }
+    scope :active, -> (query = false) { where(soft_delete: query) }
+    scope :inactive, -> (query = true) { where(soft_delete: query) }
+    scope :search_by_location, -> (location = nil) { active.where(location: location) }
+    scope :search_by_name, -> (name = nil) { active.where(name: name) }
+    scope :get_institution, -> (query = nil) { active.where(id: query) }
+    scope :verified, -> (query = "verified") {active.where(state: query) }
+    scope :not_verified, -> (query = "not_verified") { active.where(state: query) }
+    scope :approved, -> (query = "approved") { active.where(state: query) }
+    scope :not_approved, -> (query = "not_approved") { active.where(state: query) }
 
 
     aasm column: :state do # default column: aasm_state
@@ -62,10 +64,11 @@ end
 #
 # Table name: institutions
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  location   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  state      :string
+#  id          :integer          not null, primary key
+#  name        :string
+#  location    :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  state       :string
+#  soft_delete :boolean
 #

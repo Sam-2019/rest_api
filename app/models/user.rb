@@ -14,14 +14,16 @@ class User < ApplicationRecord
 
     validates :first_name, presence: true, length: {minimum: 3 ,maximum: 15}
     validates :last_name, presence: true, length: {minimum: 3 ,maximum: 50}
-    validates :email, presence: true, uniqueness: {case_sensitive: false},'valid_email_2/email': { mx: true, disposable: true }
+    validates :email, presence: true, uniqueness: {case_sensitive: false}
     # validates :attribute, phone: { possible: true, allow_blank: true, types: [:voip, :mobile], country_specifier: -> phone { phone.country.try(:upcase) } }
 
-    scope :search_by_name, -> (query = nil) { where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%") }
-    scope :verified, -> (query = "verified") { where(state: query) }
-    scope :not_verified, -> (query = "not_verified") { where(state: query) }
-    scope :approved, -> (query = "approved") { where(state: query) }
-    scope :not_approved, -> (query = "not_approved") { where(state: query) }
+    scope :active, -> (query = false) { where(soft_delete: query) }
+    scope :inactive, -> (query = true) { where(soft_delete: query) }
+    scope :search_by_name, -> (query = nil) { active.where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%") }
+    scope :verified, -> (query = "verified") { active.where(state: query) }
+    scope :not_verified, -> (query = "not_verified") { active.where(state: query) }
+    scope :approved, -> (query = "approved") { active.where(state: query) }
+    scope :not_approved, -> (query = "not_approved") { active.where(state: query) }
 
     aasm column: :state do # default column: aasm_state
         state :not_verified, initial: true
@@ -78,6 +80,7 @@ end
 #  state          :string
 #  institution_id :integer
 #  user_id        :string
+#  soft_delete    :boolean
 #
 # Indexes
 #
