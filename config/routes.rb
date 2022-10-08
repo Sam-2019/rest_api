@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
-  namespace :inbox do
-    mount LetterOpenerWeb::Engine => '/letter_opener'
-  end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 
   namespace :api do
