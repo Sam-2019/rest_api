@@ -16,6 +16,8 @@ class Institution < ApplicationRecord
     scope :get_institution, -> (query = nil) { where(id: query) }
     scope :verified, -> (query = "verified") { where(state: query) }
     scope :not_verified, -> (query = "not_verified") { where(state: query) }
+    scope :approved, -> (query = "approved") { where(state: query) }
+    scope :not_approved, -> (query = "not_approved") { where(state: query) }
 
 
     aasm column: :state do # default column: aasm_state
