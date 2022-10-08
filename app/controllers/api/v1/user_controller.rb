@@ -1,6 +1,6 @@
 class Api::V1::UserController < ApiController
   def index
-    users = User.all
+    users = User.active
       render json: users.to_json
   end
 
@@ -26,7 +26,8 @@ class Api::V1::UserController < ApiController
 
   def destroy
     user = User.find params[:id]
-      if user.destroy
+    updated_user = user.update(soft_delete: true)
+      if updated_user
         UserMailer.account_destroy_email(user).deliver_later
         render json: true, status: :no_content
       else

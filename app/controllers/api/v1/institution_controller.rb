@@ -26,7 +26,8 @@ class Api::V1::InstitutionController < ApiController
 
   def destroy
     institution = Institution.find params[:id]
-      if institution.destroy
+    updated_institution = institution.update(soft_delete: true)
+      if updated_institution
         InstitutionMailer.account_destroy_email(institution).deliver_later
         render json: true,  status: :no_content
       else
