@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_070831) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "state"
-    t.boolean "soft_delete"
+    t.boolean "soft_delete", default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_070831) do
     t.string "state"
     t.integer "institution_id"
     t.string "user_id"
-    t.boolean "soft_delete"
+    t.boolean "soft_delete", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["institution_id"], name: "index_users_on_institution_id"
   end
