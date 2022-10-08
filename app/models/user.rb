@@ -80,7 +80,7 @@ end
 #  state          :string
 #  institution_id :integer
 #  user_id        :string
-#  soft_delete    :boolean
+#  soft_delete    :boolean          default("0")
 #
 # Indexes
 #

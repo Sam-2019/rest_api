@@ -70,5 +70,5 @@ end
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  state       :string
-#  soft_delete :boolean
+#  soft_delete :boolean          default("0")
 #
