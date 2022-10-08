@@ -14,6 +14,8 @@ class Institution < ApplicationRecord
     scope :search_by_location, -> (location = nil) { where(location: location) }
     scope :search_by_name, -> (name = nil) { where(name: name) }
     scope :get_institution, -> (query = nil) { where(id: query) }
+    scope :verified, -> (query = "verified") { where(state: query) }
+    scope :not_verified, -> (query = "not_verified") { where(state: query) }
 
 
     aasm column: :state do # default column: aasm_state
