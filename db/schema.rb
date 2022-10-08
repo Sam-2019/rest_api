@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_16_170024) do
+ActiveRecord::Schema.define(version: 2022_10_08_070831) do
 
   create_table "institutions", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "verified"
-    t.integer "approved"
     t.string "state"
+    t.boolean "soft_delete"
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,16 +27,12 @@ ActiveRecord::Schema.define(version: 2022_06_16_170024) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "verified"
-    t.integer "approved"
     t.string "state"
-    t.integer "institutions_id", null: false
     t.integer "institution_id"
     t.string "user_id"
+    t.boolean "soft_delete"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["institution_id"], name: "index_users_on_institution_id"
-    t.index ["institutions_id"], name: "index_users_on_institutions_id"
   end
 
-  add_foreign_key "users", "institutions", column: "institutions_id"
 end
