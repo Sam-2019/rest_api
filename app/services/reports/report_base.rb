@@ -32,7 +32,8 @@ module Reports
                     values = [user.id, user.first_name, user.last_name, user.email, user.state].to_a
                     sheet.add_row values
                 end
-                sheet.auto_filter = 'A1:D5'
+                column_count = User.count + 1
+                sheet.auto_filter = "A1:E#{column_count}"
 
                 sheet.sheet_view.pane do |pane|
                     pane.top_left_cell = 'B2'
@@ -57,7 +58,8 @@ module Reports
                     values = [institution.id, institution.name, institution.location, institution.state] + custom_field_values
                     sheet.add_row values, types: [:string, :string, :string]
                 end
-                sheet.auto_filter = 'A1:D4'
+                column_count = Institution.count + 1
+                sheet.auto_filter = "A1:D#{column_count}"
 
                 sheet.sheet_view.pane do |pane|
                     pane.top_left_cell = 'B2'
