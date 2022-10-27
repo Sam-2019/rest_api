@@ -19,6 +19,7 @@ module InfoPdf
 
     def canvas
         @document.canvas do
+        @document.fill_color '6e6e6e'
         @document.fill_circle [@document.bounds.left, @document.bounds.top], 30
         @document.fill_circle [@document.bounds.right, @document.bounds.top], 30
         @document.fill_circle [@document.bounds.right, @document.bounds.bottom], 30
@@ -54,7 +55,16 @@ module InfoPdf
     end
 
     def write_pdf
-      @document = prawnDoc
+      page_width = 450
+      page_height = 750
+      constant = 72
+      useable_space = page_width - constant
+      three_columns_with_same_width = (useable_space/3).round
+      two_columns_with_same_width = ((useable_space/2))/2.round
+      one_column_with_half_useable_width = (useable_space/2).round
+      mini_font_size = 8.5
+
+      @document = Prawn::Document.new(page_size: [page_width, page_height], info: metadata)
       @document.font_families.update("Montserrat" => {
         :normal => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Regular.ttf"),
         :italic => RAILS_ROOT_PATH.join("app/assets/fonts/Montserrat/Montserrat-Italic.ttf"),
@@ -76,7 +86,7 @@ module InfoPdf
       @document.move_down(5)
       @document.font "Courier"
       @document.text "Yeah.", align: :right
-      canvas
+
 
       @document.render_file @filepath
     end
