@@ -6,8 +6,8 @@ module InfoPdf
     PDF_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/pdf_downloads/"
 
     def initialize(user)
-      @user = user
-      @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@user}.pdf"
+      @user = ActiveDecorator::Decorator.instance.decorate(user)
+      @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@user.name}.pdf"
       get_pdf
     end
   
@@ -19,7 +19,7 @@ module InfoPdf
 
    def metadata
       info = {
-        Title: "#{@user}-name.pdf",
+        Title: "#{@user.name}.pdf",
         Author: 'Rest API',
         Subject: 'My Subject',
         Keywords: 'test metadata ruby pdf dry',
@@ -60,7 +60,7 @@ module InfoPdf
 
       header_line
       @document.move_down(5)
-      @document.text "Hello #{@user}"
+      @document.text "Hello #{@user.name}"
       @document.render_file @filepath
     end
   end

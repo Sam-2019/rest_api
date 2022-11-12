@@ -6,8 +6,8 @@ module InfoPdf
     PDF_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/pdf_downloads/"
   
     def initialize(institution)
-      @institution = institution
-      @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@institution}-name.pdf"
+      @institution = ActiveDecorator::Decorator.instance.decorate(institution)
+      @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@institution.name}.pdf"
       get_pdf
     end
   
@@ -40,7 +40,7 @@ module InfoPdf
 
     def metadata
       info = {
-        Title: "#{@institution}-name.pdf",
+        Title: "#{@institution.institution_name}.pdf",
         Author: 'Rest API',
         Subject: 'My Subject',
         Keywords: 'test metadata ruby pdf dry',
@@ -75,7 +75,7 @@ module InfoPdf
       bounding
       @document.move_down(5)
       @document.font "Montserrat"
-      @document.text "Hello #{@institution}", align: :left
+      @document.text "Hello #{@institution.institution_name}", align: :left
       canvas
 
       @document.start_new_page
