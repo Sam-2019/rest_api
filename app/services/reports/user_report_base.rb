@@ -5,7 +5,7 @@ module Reports
         SPREADSHEET_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/spreadsheet_downloads/"
 
         def initialize
-            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/#users_list.xlsx"
+            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/users_list.xlsx"
         end
 
         def sample_data
