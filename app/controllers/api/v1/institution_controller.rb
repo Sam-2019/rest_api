@@ -4,6 +4,16 @@ class Api::V1::InstitutionController < ApiController
         render json: institutions.to_json
   end
 
+  def download
+    download_list = Reports::InstitutionReportBase.new.sample_data
+
+    if download_list
+      render json: "Success", status: :created
+    else
+      render json: "Failed", status: :unprocessable_entity
+    end
+  end
+
   def show
     institution = Institution.find params[:id]
     if institution
