@@ -4,6 +4,16 @@ class Api::V1::UserController < ApiController
       render json: users.to_json
   end
 
+  def download
+    download_list = Reports::UserReportBase.new.sample_data
+
+    if download_list
+      render json: "Success", status: :created
+    else
+      render json: "Failed", status: :unprocessable_entity
+    end
+  end
+
   def show
     user = User.find params[:id]
     if user
