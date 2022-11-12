@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :institution, :user
+      resources :user
+        get "downloads/users" => "user#download", as: :download_users
+      resources :institution
+        get "downloads/institutions" => "institution#download", as: :download_institutions
     end
   end
 
