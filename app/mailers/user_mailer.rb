@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
     @filepath = "#{RAILS_ROOT_PATH}/pdf_downloads/"
 
     def welcome_email(user)
