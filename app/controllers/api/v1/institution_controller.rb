@@ -48,8 +48,7 @@ class Api::V1::InstitutionController < ApiController
   def create
     institution = Institution.new(institution_params)
       if institution.save
-        InfoPdf::Institution.new(institution)
-        InstitutionMailer.welcome_email(institution).deliver_later
+        Dispatch.new(institution).send_institution_mail
         render json: institution.to_json, status: :created
       else
         render_error(institution)
