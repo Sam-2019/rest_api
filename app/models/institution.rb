@@ -1,7 +1,7 @@
 class Institution < ApplicationRecord
     include AASM
 
-    after_commit :log_commit_action
+    after_commit :log_commit_action, :generate_pdf
 
     after_update :log_update_action
     after_destroy :log_delete_action
@@ -57,6 +57,10 @@ class Institution < ApplicationRecord
 
     def log_status_change
       puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+    end
+
+    def generate_pdf
+      InfoPdf::Institution.new(self)
     end
 end
 
