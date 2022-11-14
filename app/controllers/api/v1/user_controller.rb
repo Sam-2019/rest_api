@@ -48,8 +48,7 @@ class Api::V1::UserController < ApiController
   def create
     user = User.new(user_params)
       if user.save
-        InfoPdf::User.new(user)
-        UserMailer.welcome_email(user).deliver_later
+        Dispatch.new(user).send_user_mail
         render json: user.to_json, status: :created
       else
         render_error(user)
