@@ -1,4 +1,6 @@
 class InstitutionMailer < ApplicationMailer
+    @filepath = "#{RAILS_ROOT_PATH}/pdf_downloads/"
+
     def welcome_email(institution)
         @institution = institution
         return false if  @institution.email.blank? &&  @institution.name.blank?
