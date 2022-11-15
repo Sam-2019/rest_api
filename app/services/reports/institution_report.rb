@@ -1,19 +1,9 @@
-require 'caxlsx'
+
 
 module Reports
-    class InstitutionReportBase
-        SPREADSHEET_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/spreadsheet_downloads/"
-
-        def initialize
-            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/institutions_list.xlsx"
-        end
-
-        def sample_data
-            @document = Axlsx::Package.new
+    class InstitutionReport < Reports::ReportBase
+        def generate
             institutions_list
-
-            @document.workbook.add_view tab_ratio: 800, active_tab: 1
-            @document.serialize @filepath
         end
 
         def institutions_list
@@ -38,7 +28,7 @@ module Reports
                     pane.y_split = 1
                     pane.x_split = 1
                     pane.active_pane = :bottom_right
-                  end
+                end
             end
         end
 
