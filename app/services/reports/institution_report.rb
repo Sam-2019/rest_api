@@ -1,9 +1,10 @@
-
-
 module Reports
     class InstitutionReport < Reports::ReportBase
         def generate
             institutions_list
+
+            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/institutions_list.xlsx"
+            @document.serialize @filepath
         end
 
         def institutions_list
