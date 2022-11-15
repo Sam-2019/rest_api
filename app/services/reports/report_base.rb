@@ -4,17 +4,16 @@ module Reports
     class ReportBase
         SPREADSHEET_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/spreadsheet_downloads/"
 
-        def initialize(file_name)
-            @file_name = file_name
-            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/#{@file_name}.xlsx"
+        def initialize
+            @document = Axlsx::Package.new
+            @document.workbook.add_view tab_ratio: 800, active_tab: 1
         end
 
-        def sample_data
-            @document = Axlsx::Package.new
+        def generate_combo
             users_list
             institutions_list
 
-            @document.workbook.add_view tab_ratio: 800, active_tab: 1
+            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/all_list.xlsx"
             @document.serialize @filepath
         end
 
@@ -23,12 +22,6 @@ module Reports
                 header =  ['ID', 'First Name', 'Last Name', 'Email', 'State']
                 sheet.add_row header, style: Axlsx::STYLE_THIN_BORDER
                 User.all.each do |user|
-                    # custom_field_values = begin
-                    #     parse_custom_fields(user.properties.values)
-                    # rescue
-                    #     []
-                    # end
-                    # values = [user.id, user.first_name, user.last_name, user.email, user.state] + custom_field_values
                     values = [user.id, user.first_name, user.last_name, user.email, user.state].to_a
                     sheet.add_row values
                 end
@@ -67,7 +60,7 @@ module Reports
                     pane.y_split = 1
                     pane.x_split = 1
                     pane.active_pane = :bottom_right
-                  end
+                end
             end
         end
 
