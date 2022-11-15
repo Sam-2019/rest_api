@@ -1,18 +1,9 @@
-require 'caxlsx'
-
 module Reports
-    class UserReportBase
-        SPREADSHEET_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/spreadsheet_downloads/"
-
-        def initialize
-            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/users_list.xlsx"
-        end
-
-        def sample_data
-            @document = Axlsx::Package.new
+    class UserReport < Reports::ReportBase
+        def generate
             users_list
 
-            @document.workbook.add_view tab_ratio: 800, active_tab: 1
+            @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/users_list.xlsx"
             @document.serialize @filepath
         end
 
