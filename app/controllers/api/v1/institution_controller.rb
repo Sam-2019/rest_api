@@ -4,10 +4,21 @@ class Api::V1::InstitutionController < ApiController
         render json: institutions.to_json
   end
 
-  def download
-    download_list = Reports::InstitutionReportBase.new.sample_data
+  def pdf
+    institution = Institution.find params[:id]
+    download = Reports::Pdf::Institution.new(institution).write_pdf
 
-    if download_list
+    if download
+      render json: "Success", status: :created
+    else
+      render json: "Failed", status: :unprocessable_entity
+    end
+  end
+
+  def spreadsheet
+    download = Reports::Excel::InstitutionList.new.generate
+
+    if download
       render json: "Success", status: :created
     else
       render json: "Failed", status: :unprocessable_entity
