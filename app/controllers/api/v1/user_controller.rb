@@ -4,10 +4,21 @@ class Api::V1::UserController < ApiController
       render json: users.to_json
   end
 
-  def download
-    download_list = Reports::UserReportBase.new.sample_data
+  def pdf
+    user = User.find params[:id]
+    download = Reports::Pdf::User.new(user).write_pdf
 
-    if download_list
+    if download
+      render json: "Success", status: :created
+    else
+      render json: "Failed", status: :unprocessable_entity
+    end
+  end
+
+  def spreadsheet
+    download = Reports::Excel::UserList.new.generate
+
+    if download
       render json: "Success", status: :created
     else
       render json: "Failed", status: :unprocessable_entity
