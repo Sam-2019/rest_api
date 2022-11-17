@@ -13,6 +13,7 @@ module Reports
         @document.move_down(5)
         @document.text "Hello #{@user.name}"
         @document.render_file @filepath
+        true
       end
     end
   end

@@ -25,6 +25,7 @@ module Reports
         @document.text "Yeah.", align: :right
 
         @document.render_file @filepath
+        true
       end
     end
   end
