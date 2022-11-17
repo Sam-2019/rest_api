@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :user
-        get "downloads/users" => "user#download", as: :download_users
+        get "dwnld/sprdsht/users" => "user#spreadsheet", as: :download_spreadsheet_users
+        get "dwnld/pdf/user/:id" => "user#pdf", as: :download_pdf_user
       resources :institution
-        get "downloads/institutions" => "institution#download", as: :download_institutions
+        get "dwnld/sprdsht/institutions" => "institution#spreadsheet", as: :download_spreadsheet_institutions
+        get "dwnld/pdf/institution/:id" => "institution#pdf", as: :download_spreadsheet_institution
     end
   end
 
