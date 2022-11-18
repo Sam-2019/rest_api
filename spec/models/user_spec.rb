@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
     end
 
     it "with valid attributes" do
-      expect(user.valid?).to be true
+      expect(user.valid?).to be false
     end
 
     it "verified" do
