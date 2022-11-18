@@ -8,10 +8,16 @@ class Api::V1::InstitutionController < ApiController
     institution = Institution.find params[:id]
     download = Reports::Pdf::Institution.new(institution).write_pdf
 
-    if download
-      render json: "Success", status: :created
-    else
-      render json: "Failed", status: :unprocessable_entity
+    respond_to do |format|
+      if download
+        format.json { render json: "Success", status: :created }
+        format.pdf {
+            send_file RAILS_ROOT_PATH.join("pdf_downloads", "#{institution.name}.pdf"),
+              filename: "#{institution.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+        }
+      else
+        format.json { render json: "Failed", status: :unprocessable_entity }
+      end
     end
   end
 
