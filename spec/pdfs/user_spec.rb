@@ -8,7 +8,7 @@ RSpec.describe Reports do
   let(:pdf) { Reports::Pdf::User.new(user).write_pdf }
   let(:pdf_content) { PDF::Reader.new(file).page(1).to_s }
 
-  it 'contains dello & user name' do
+  it 'contains hello & user name' do
     expect(pdf).to be_truthy
     expect(pdf_content).to include('Hello')
     expect(pdf_content).to include("#{decorated_user.name}")
