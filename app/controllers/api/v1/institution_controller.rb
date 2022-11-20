@@ -1,11 +1,13 @@
 class Api::V1::InstitutionController < ApiController
+  include PdfParam
+
   def index
     institutions = Institution.all
         render json: institutions.to_json
   end
 
   def pdf
-    institution = Institution.find params[:id]
+    institution = Institution.find pdf_param[:id]
     download = Reports::Pdf::Institution.new(institution).write_pdf
 
     respond_to do |format|
