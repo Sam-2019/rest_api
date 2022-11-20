@@ -7,7 +7,7 @@ class Api::V1::UserController < ApiController
   end
 
   def pdf
-    user = User.find pdf_param[:id]
+    user = User.find pdf_param
     download = Reports::Pdf::User.new(user).write_pdf
 
     respond_to do |format|
@@ -82,10 +82,6 @@ class Api::V1::UserController < ApiController
 
   def user_params
     params.permit(:first_name, :last_name, :email, :institution_id)
-  end
-
-  def pdf_param
-    params.permit(:id)
   end
 
   def render_error(data)
