@@ -53,4 +53,3 @@ jobs:
         with:
           name: code-coverage
           path: coverage/
-        run: bin/rake
