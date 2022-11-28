@@ -41,15 +41,3 @@ jobs:
         with:
         coverageCommand: bundle exec rspec -P "spec/decorators/*.rb,spec/models/*.rb,spec/pdfs/*.rb"
         debug: false
-      - name: Upload test logs
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-logs
-          path: log/
-      - name: Upload coverage results
-        if: success()
-        uses: actions/upload-artifact@v2
-        with:
-          name: code-coverage
-          path: coverage/
