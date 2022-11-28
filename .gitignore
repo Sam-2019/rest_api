@@ -36,5 +36,4 @@ db/test.*
 waste
 /coverage
 spec/examples.txt
-pdf_downloads
 spreadsheet_downloads
