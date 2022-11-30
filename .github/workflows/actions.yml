@@ -38,7 +38,7 @@ jobs:
         run: | 
           bundle exec rails db:setup db:test:prepare
       - name: Run Test
-        run: bundle exec rspec -P "spec/decorators/*.rb, spec/models/*.rb"
+        run: bundle exec rspec -P "spec/decorators/*.rb, spec/models/*.rb, spec/pdfs/*.rb"
       - name: Upload test logs
         if: failure()
         uses: actions/upload-artifact@v3.1.1
