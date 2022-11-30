@@ -1,4 +1,5 @@
-class UserImport
+module ImportCsv
+  class User
     include CSVImporter
 
     model User
@@ -9,3 +10,4 @@ class UserImport
 
     when_invalid :abort
   end
+end

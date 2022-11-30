@@ -1,4 +1,5 @@
-class InstitutionImport
+module ImportCsv
+  class Institution
     include CSVImporter
 
     model Institution
@@ -8,3 +9,4 @@ class InstitutionImport
 
     when_invalid :abort
   end
+end
