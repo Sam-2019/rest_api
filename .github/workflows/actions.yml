@@ -54,5 +54,4 @@ jobs:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3.0.1
         with:
-          name: test-artifacts
           path: artifacts/
