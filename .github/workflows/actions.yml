@@ -35,6 +35,19 @@ jobs:
           bundler-cache: true
       # Add or replace database setup steps here
       - name: Set up database schema
-        run: bin/rails db:schema:load
-      - name: Run tests
-        run: bin/rake
+        run: | 
+          bundle exec rails db:setup db:test:prepare
+      - name: Run Test
+        run: bundle exec rspec -P "spec/decorators/*.rb, spec/models/*.rb"
+      - name: Upload test logs
+        if: failure()
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: test-logs
+          path: log/
+      - name: Upload coverage results
+        if: success()
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: code-coverage
+          path: coverage/
