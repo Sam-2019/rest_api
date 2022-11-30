@@ -60,7 +60,7 @@ class Institution < ApplicationRecord
     end
 
     def generate_pdf
-      # InfoPdf::Institution.new(self)
+      Reports::Pdf::Institution.new(self)
     end
 end
 
