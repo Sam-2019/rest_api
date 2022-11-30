@@ -1,6 +1,6 @@
 module ImportCsv
   class Institution
-    include CSVImporter
+    # include CSVImporter
 
     model Institution
 

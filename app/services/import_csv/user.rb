@@ -1,6 +1,6 @@
 module ImportCsv
   class User
-    include CSVImporter
+    # include CSVImporter
 
     model User
 
