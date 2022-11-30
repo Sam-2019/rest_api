@@ -67,7 +67,7 @@ class User < ApplicationRecord
     end
 
     def generate_pdf
-      InfoPdf::User.new(self)
+      # InfoPdf::User.new(self)
     end
 end
 
