@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-    @filepath = "#{RAILS_ROOT_PATH}/pdf_downloads/"
+    @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
 
     def welcome_email(user)
         @user = ActiveDecorator::Decorator.instance.decorate(user)

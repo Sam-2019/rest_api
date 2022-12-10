@@ -4,7 +4,7 @@ RSpec.describe Reports do
   let(:user) { build(:user) }
   let(:decorated_user) { ActiveDecorator::Decorator.instance.decorate(user) }
 
-  let(:file) { "#{RAILS_ROOT_PATH}/pdf_downloads/#{decorated_user.name}.pdf" }
+  let(:file) { "#{RAILS_ROOT_PATH}/downloads/pdf/#{decorated_user.name}.pdf" }
   let(:pdf) { Reports::Pdf::User.new(user).write_pdf }
   let(:pdf_content) { PDF::Reader.new(file).page(1).to_s }
 

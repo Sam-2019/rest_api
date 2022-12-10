@@ -14,7 +14,7 @@ class Api::V1::UserController < ApiController
       if download
         format.json { render json: "Success", status: :created }
         format.pdf {
-            send_file RAILS_ROOT_PATH.join("pdf_downloads", "#{user.name}.pdf"),
+            send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{user.name}.pdf"),
               filename: "#{user.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
         }
       else

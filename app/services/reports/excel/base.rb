@@ -3,7 +3,7 @@ require 'caxlsx'
 module Reports
     module Excel
         class Base
-            SPREADSHEET_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/spreadsheet_downloads/"
+            SPREADSHEET_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/downloads/spreadsheet/"
 
             def initialize
                 @document = Axlsx::Package.new

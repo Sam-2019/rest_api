@@ -4,7 +4,7 @@ require "securerandom"
 module Reports
   module Pdf
     class Base
-      PDF_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/pdf_downloads/"
+      PDF_DOWNLOAD_FOLDER = "#{RAILS_ROOT_PATH}/downloads/pdf/"
     
       def initialize(data)
         @data = data
