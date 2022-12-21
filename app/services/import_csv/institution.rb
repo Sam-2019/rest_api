@@ -1,10 +1,12 @@
-class InstitutionImport
-    include CSVImporter
+module ImportCsv
+  class Institution
+    # include CSVImporter
 
-    model Institution
+    # model Institution
 
-    column :name
-    column :location
+    # column :name
+    # column :location
 
-    when_invalid :abort
+    # when_invalid :abort
   end
+end

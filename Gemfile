@@ -71,6 +71,8 @@ group :development, :test do
   # gem "rubycritic", require: false
   gem "letter_opener"
   gem 'letter_opener_web', '~> 2.0'
+  gem 'pry-rails'
+  gem 'pdf-reader'
 end
 
 group :development do

@@ -1,11 +1,13 @@
-class UserImport
-    include CSVImporter
+module ImportCsv
+  class User
+    # include CSVImporter
 
-    model User
+    # model User
 
-    column :first_name
-    column :last_name
-    column :email
+    # column :first_name
+    # column :last_name
+    # column :email
 
-    when_invalid :abort
+    # when_invalid :abort
   end
+end

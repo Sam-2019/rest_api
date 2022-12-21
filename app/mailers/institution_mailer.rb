@@ -1,6 +1,17 @@
 class InstitutionMailer < ApplicationMailer
+    @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
+
     def welcome_email(institution)
-        build(institution, "Welcome to My Awesome Site")
+        @institution = institution
+        return false if  @institution.email.blank? &&  @institution.name.blank?
+
+        if FileTest.exist?("#{@filepath}#{@institution.name}.pdf")
+            attachments["File.pdf"] = File.read("#{@filepath}#{@institution.name}.pdf")
+            build(@institution, "Welcome to My Awesome Site")
+        else
+            InfoPdf::Institution.new(@institution)
+            InstitutionMailer.welcome_email(institution).deliver_later(wait: 15.seconds)
+        end
     end
 
     def profile_update_email(institution)
