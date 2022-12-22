@@ -85,3 +85,4 @@ end
 
 
 gem "sidekiq", "~> 6.5"
+gem 'paper_trail'
