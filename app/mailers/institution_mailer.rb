@@ -1,4 +1,5 @@
 class InstitutionMailer < ApplicationMailer
+    # before_action :set_institution
     @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
 
     def welcome_email(institution)
@@ -23,6 +24,10 @@ class InstitutionMailer < ApplicationMailer
     end
 
     private
+
+    def set_institution
+        @institution = params[:institution]
+    end
 
     def build(institution, subject)
         return false if institution.email.blank? && institution.name.blank?
