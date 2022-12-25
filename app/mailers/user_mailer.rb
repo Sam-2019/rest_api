@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+    # before_action :set_user
     @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
 
     def welcome_email(user)
@@ -23,6 +24,10 @@ class UserMailer < ApplicationMailer
     end
 
     private
+
+    def set_user
+        @user = params[:user]
+    end
 
     def build(user, subject)
         @user = ActiveDecorator::Decorator.instance.decorate(user)
