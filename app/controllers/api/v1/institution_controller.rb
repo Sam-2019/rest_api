@@ -48,7 +48,7 @@ class Api::V1::InstitutionController < ApiController
     updated_institution = institution.update(institution_params)
 
       if updated_institution
-        InstitutionMailer.profile_update_email(institution).deliver_later
+        Dispatch.new(institution).institution_update_mail
         render json: true, status: :created
       else
         render json: false, status: :unprocessable_entity
@@ -60,7 +60,7 @@ class Api::V1::InstitutionController < ApiController
     updated_institution = institution.update(soft_delete: true)
 
       if updated_institution
-        InstitutionMailer.account_destroy_email(institution).deliver_later
+        Dispatch.new(institution).institution_deletion_mail
         render json: true,  status: :no_content
       else
         render_error(institution)
@@ -71,7 +71,7 @@ class Api::V1::InstitutionController < ApiController
     institution = Institution.new(institution_params)
 
       if institution.save
-        Dispatch.new(institution).send_institution_mail
+        Dispatch.new(institution).institution_creation_mail
         render json: institution.to_json, status: :created
       else
         render_error(institution)
