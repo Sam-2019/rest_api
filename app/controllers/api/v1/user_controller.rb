@@ -48,7 +48,7 @@ class Api::V1::UserController < ApiController
     updated_user = user.update(user_params)
 
       if updated_user
-        UserMailer.profile_update_email(user).deliver_later
+        Dispatch.new(user).user_update_mail
         render json: true, status: :created
       else
         render json: true, status: :unprocessable_entity
@@ -60,7 +60,7 @@ class Api::V1::UserController < ApiController
     updated_user = user.update(soft_delete: true)
 
       if updated_user
-        UserMailer.account_destroy_email(user).deliver_later
+        Dispatch.new(user).user_deletion_mail
         render json: true, status: :no_content
       else
         render_error(user)
@@ -71,7 +71,7 @@ class Api::V1::UserController < ApiController
     user = User.new(user_params)
     
       if user.save
-        Dispatch.new(user).send_user_mail
+        Dispatch.new(user).user_creation_mail
         render json: user.to_json, status: :created
       else
         render_error(user)
