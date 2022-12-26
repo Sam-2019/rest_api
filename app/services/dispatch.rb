@@ -18,4 +18,12 @@ class Dispatch
         def institution_creation_mail
             InstitutionMailer.welcome_email(@data).deliver_later
         end
+
+        def institution_update_mail
+            InstitutionMailer.profile_update_email(@data).deliver_later
+        end
+    
+        def institution_deletion_mail
+            InstitutionMailer.account_destroy_email(@data).deliver_later
+        end
 end
