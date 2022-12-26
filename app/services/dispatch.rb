@@ -3,11 +3,11 @@ class Dispatch
             @data = data
         end
 
-        def send_user_mail
+        def user_creation_mail
             UserMailer.welcome_email(@data).deliver_later
         end
 
-        def send_institution_mail
+        def institution_creation_mail
             InstitutionMailer.welcome_email(@data).deliver_later
         end
 end
