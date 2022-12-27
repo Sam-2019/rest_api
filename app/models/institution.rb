@@ -76,4 +76,5 @@ end
 #  updated_at  :datetime         not null
 #  state       :string
 #  soft_delete :boolean          default("0")
+#  email       :string
 #
