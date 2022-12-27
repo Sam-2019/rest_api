@@ -42,5 +42,9 @@ module RestApi
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+    config.action_mailer.default_url_options = { host: 'example.com' }
+    config.asset_host = 'http://example.com'
   end
 end
