@@ -11,6 +11,7 @@ class Institution < ApplicationRecord
 
     validates :name, presence: true, length: {minimum: 3 ,maximum: 50 }
     validates :location, presence: true, length: {maximum: 50 }
+    validates :email, presence: true, uniqueness: {case_sensitive: false}
 
     scope :active, -> (query = false) { where(soft_delete: query) }
     scope :inactive, -> (query = true) { where(soft_delete: query) }
