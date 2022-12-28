@@ -17,7 +17,7 @@ RSpec.describe InstitutionMailer, type: :mailer do
     end
 
     it "with name and email" do
-      email = InstitutionMailer.welcome_email(@data).deliver_now
+      email = InstitutionMailer.welcome_email(institution).deliver_now
       expect(email).to be_truthy
     end
   end
