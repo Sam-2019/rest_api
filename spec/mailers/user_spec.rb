@@ -18,7 +18,7 @@ RSpec.describe UserMailer, type: :mailer do
   
     it "with name and email" do
       email = UserMailer.welcome_email(user).deliver_now
-      expect(pdf).to be_truthy
+      expect(email).to be_truthy
     end
   end
 end
