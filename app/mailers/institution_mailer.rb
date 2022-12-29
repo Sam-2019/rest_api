@@ -10,8 +10,8 @@ class InstitutionMailer < ApplicationMailer
             attachments["File.pdf"] = File.read("#{@filepath}#{@institution.name}.pdf")
             build(@institution, "Welcome to My Awesome Site")
         else
-            InfoPdf::Institution.new(@institution)
-            InstitutionMailer.welcome_email(institution).deliver_later(wait: 15.seconds)
+            Reports::Pdf::Institution.new(@institution)
+            InstitutionMailer.welcome_email(institution).deliver_later
         end
     end
 
