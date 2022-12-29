@@ -4,14 +4,14 @@ class UserMailer < ApplicationMailer
 
     def welcome_email(user)
         @user = ActiveDecorator::Decorator.instance.decorate(user)
-        return false if @user.email_address.blank? && @user.name.blank? 
+        return false if @user.email_address.blank? && @user.user_name.blank? 
 
-        if FileTest.exist?("#{@filepath}#{@user.name}.pdf")
-            attachments["File.pdf"] = File.read("#{@filepath}#{@user.name}.pdf")
+        if FileTest.exist?("#{@filepath}#{@user.user_name}.pdf")
+            attachments["File.pdf"] = File.read("#{@filepath}#{@user.user_name}.pdf")
             build(user, "Welcome to My Awesome Site")
         else
-            InfoPdf::User.new(@user)
-            UserMailer.welcome_email(user).deliver_later(wait: 15.seconds)
+            Reports::Pdf::User.new(@user)
+            UserMailer.welcome_email(user).deliver_later
         end
     end
 
@@ -31,8 +31,8 @@ class UserMailer < ApplicationMailer
 
     def build(user, subject)
         @user = ActiveDecorator::Decorator.instance.decorate(user)
-        return false if @user.email_address.blank? && @user.name.blank? 
+        return false if @user.email_address.blank? && @user.user_name.blank? 
 
-        mail(to: "#{@user.name} <#{@user.email_address}>", subject: subject)
+        mail(to: "#{@user.user_name} <#{@user.email_address}>", subject: subject)
     end
 end
