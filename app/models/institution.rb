@@ -1,4 +1,5 @@
 class Institution < ApplicationRecord
+    has_paper_trail
     include AASM
 
     after_commit :log_commit_action, :generate_pdf

@@ -36,6 +36,11 @@ RSpec.configure do |config|
   config.order = :default
   config.example_status_persistence_file_path = "spec/examples.txt"
 
+  config.after(:suite) do # or :each or :all
+    Dir["#{RAILS_ROOT_PATH}/downloads/pdf/*.pdf"].each do |file|
+        File.delete(file)
+    end
+end
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
