@@ -1,17 +1,17 @@
 class InstitutionMailer < ApplicationMailer
     # before_action :set_institution
-    @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
 
     def welcome_email(institution)
+        @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
         @institution = institution
-        return false if  @institution.email.blank? &&  @institution.name.blank?
+        return false if @institution.email.blank? &&  @institution.name.blank?
 
         if FileTest.exist?("#{@filepath}#{@institution.name}.pdf")
             attachments["File.pdf"] = File.read("#{@filepath}#{@institution.name}.pdf")
             build(@institution, "Welcome to My Awesome Site")
         else
-            Reports::Pdf::Institution.new(@institution)
-            InstitutionMailer.welcome_email(institution).deliver_later
+            Reports::Pdf::Institution.new(@institution).write_pdf
+            InstitutionMailer.welcome_email(institution)
         end
     end
 
@@ -30,8 +30,9 @@ class InstitutionMailer < ApplicationMailer
     end
 
     def build(institution, subject)
+        @institution = ActiveDecorator::Decorator.instance.decorate(institution)
         return false if institution.email.blank? && institution.name.blank?
 
-        mail(to: "#{institution.name} <#{institution.email}>", subject: subject)
+        mail(to: "#{@institution.email_address} <#{@institution.institution_name}>", subject: subject)
     end
 end
