@@ -74,6 +74,7 @@ group :development, :test do
   gem 'letter_opener_web', '~> 2.0'
   gem 'pry-rails'
   gem 'pdf-reader'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
