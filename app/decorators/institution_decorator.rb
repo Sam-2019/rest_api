@@ -10,4 +10,8 @@ module InstitutionDecorator
   def current_state
     "#{state}"
   end
+
+  def email_address
+    "#{email}"
+  end
 end

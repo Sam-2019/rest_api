@@ -161,7 +161,6 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
-    ffi (1.15.5)
     ffi (1.15.5-x64-mingw32)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -247,10 +246,6 @@ GEM
       timeout
     nio4r (2.5.8)
     nokogiri (1.13.1-x64-mingw32)
-      racc (~> 1.4)
-    nokogiri (1.13.1-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     paper_trail (14.0.0)
@@ -365,8 +360,6 @@ GEM
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -428,6 +421,7 @@ DEPENDENCIES
   caxlsx
   caxlsx_rails
   database_cleaner
+  database_cleaner-active_record
   debug
   devise
   draper

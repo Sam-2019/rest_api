@@ -1,8 +1,8 @@
 class UserMailer < ApplicationMailer
     # before_action :set_user
-    @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
 
     def welcome_email(user)
+        @filepath = "#{RAILS_ROOT_PATH}/downloads/pdf/"
         @user = ActiveDecorator::Decorator.instance.decorate(user)
         return false if @user.email_address.blank? && @user.user_name.blank? 
 
@@ -10,8 +10,8 @@ class UserMailer < ApplicationMailer
             attachments["File.pdf"] = File.read("#{@filepath}#{@user.user_name}.pdf")
             build(user, "Welcome to My Awesome Site")
         else
-            Reports::Pdf::User.new(@user)
-            UserMailer.welcome_email(user).deliver_later
+            Reports::Pdf::User.new(@user).write_pdf
+            UserMailer.welcome_email(user)
         end
     end
 
