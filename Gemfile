@@ -50,7 +50,7 @@ gem 'active_decorator'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 gem 'telegram-bot'
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'awesome_print'
 gem 'hirb'
 gem 'hirb-unicode'
