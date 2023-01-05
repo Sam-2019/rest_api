@@ -49,6 +49,11 @@ gem 'rswag-ui'
 gem 'active_decorator'
 gem 'caxlsx'
 gem 'caxlsx_rails'
+gem 'telegram-bot'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'awesome_print'
+gem 'hirb'
+gem 'hirb-unicode'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

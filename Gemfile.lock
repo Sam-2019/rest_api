@@ -108,6 +108,7 @@ GEM
       ruby2_keywords (>= 0.0.2, < 1.0)
     audited (5.1.0)
       activerecord (>= 5.0, < 7.1)
+    awesome_print (1.9.2)
     bcrypt (3.1.18)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -144,6 +145,10 @@ GEM
     diff-lcs (1.5.0)
     digest (3.1.0)
     docile (1.4.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     draper (4.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -161,6 +166,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
+    ffi (1.15.5)
     ffi (1.15.5-x64-mingw32)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -174,7 +180,12 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
     hashery (2.1.2)
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     htmlentities (4.3.4)
+    httpclient (2.8.3)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.13.1)
@@ -246,6 +257,10 @@ GEM
       timeout
     nio4r (2.5.8)
     nokogiri (1.13.1-x64-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.13.1-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     paper_trail (14.0.0)
@@ -360,6 +375,8 @@ GEM
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -387,6 +404,10 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     strscan (3.0.1)
+    telegram-bot (0.15.6)
+      actionpack (>= 4.0, < 7.1)
+      activesupport (>= 4.0, < 7.1)
+      httpclient (~> 2.7)
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.2.0)
@@ -395,6 +416,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2022.1)
       tzinfo (>= 1.0.0)
+    unicode-display_width (0.1.1)
     valid_email2 (4.0.3)
       activemodel (>= 3.2)
       mail (~> 2.5)
@@ -416,6 +438,7 @@ DEPENDENCIES
   activeadmin
   after_commit_everywhere (~> 1.0)
   annotate
+  awesome_print
   bootsnap
   cancancan
   caxlsx
@@ -424,10 +447,13 @@ DEPENDENCIES
   database_cleaner-active_record
   debug
   devise
+  dotenv-rails
   draper
   factory_bot
   factory_bot_rails
   faker
+  hirb
+  hirb-unicode
   letter_opener
   letter_opener_web (~> 2.0)
   motor-admin
@@ -453,6 +479,7 @@ DEPENDENCIES
   simplecov
   sprockets
   sqlite3 (~> 1.4)
+  telegram-bot
   tzinfo-data
   valid_email2
 
