@@ -37,3 +37,4 @@ waste
 /coverage
 spec/examples.txt
 
+.env
