@@ -4,26 +4,26 @@ class Dispatch
         end
 
         def user_creation_mail
-            UserMailer.welcome_email(@data).deliver_later
+            UserMailer.welcome_email(@data)
         end
 
         def user_update_mail
-            UserMailer.profile_update_email(@data).deliver_later
+            UserMailer.profile_update_email(@data)
         end
     
         def user_deletion_mail
-            UserMailer.account_destroy_email(@data).deliver_later
+            UserMailer.account_destroy_email(@data)
         end
 
         def institution_creation_mail
-            InstitutionMailer.welcome_email(@data).deliver_later
+            InstitutionMailer.welcome_email(@data)
         end
 
         def institution_update_mail
-            InstitutionMailer.profile_update_email(@data).deliver_later
+            InstitutionMailer.profile_update_email(@data)
         end
     
         def institution_deletion_mail
-            InstitutionMailer.account_destroy_email(@data).deliver_later
+            InstitutionMailer.account_destroy_email(@data)
         end
 end
