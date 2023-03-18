@@ -4,7 +4,7 @@ class Institution < ApplicationRecord
   has_paper_trail
   include AASM
 
-  after_commit :log_commit_action, :generate_pdf
+  after_commit :log_commit_action
 
   after_update :log_update_action
   after_destroy :log_delete_action
@@ -19,7 +19,6 @@ class Institution < ApplicationRecord
   scope :inactive, ->(query = true) { where(soft_delete: query) }
   scope :search_by_location, ->(location = nil) { active.where(location: location) }
   scope :search_by_name, ->(name = nil) { active.where(name: name) }
-  scope :get_institution, ->(query = nil) { active.where(id: query) }
   scope :verified, ->(query = "verified") { active.where(state: query) }
   scope :not_verified, ->(query = "not_verified") { active.where(state: query) }
   scope :approved, ->(query = "approved") { active.where(state: query) }
@@ -61,10 +60,6 @@ private
 
   def log_status_change
     Rails.logger.debug "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
-  end
-
-  def generate_pdf
-    Reports::Pdf::Institution.new(self)
   end
 end
 

@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   before_save { self.email = email.downcase }
 
-  after_commit :log_commit_action, :generate_pdf
+  after_commit :log_commit_action
 
   after_update :log_update_action
   after_destroy :log_delete_action
@@ -47,10 +47,6 @@ class User < ApplicationRecord
     event :approve do
       transitions from: :not_approved, to: :approved
     end
-  end
-
-  def get_institution(id)
-    Institution.get_institution(id)
   end
 
 private
