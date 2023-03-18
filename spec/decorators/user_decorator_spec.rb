@@ -10,9 +10,9 @@ RSpec.describe UserDecorator do
 
   describe "user" do
     it "full name" do
-      expect(decorated_user.user_name).to eq("First+1 Last+1")
-      expect(decorated_user.user_name).to include("First+")
-      expect(decorated_user.user_name).to include("Last+")
+      expect(decorated_user.name).to eq("First+1 Last+1")
+      expect(decorated_user.name).to include("First+")
+      expect(decorated_user.name).to include("Last+")
     end
 
     it "email address" do

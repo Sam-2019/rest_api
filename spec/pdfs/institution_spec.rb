@@ -7,7 +7,7 @@ RSpec.describe Reports do
   let(:decorated_institution) { ActiveDecorator::Decorator.instance.decorate(institution) }
 
   let(:file) { "#{RAILS_ROOT_PATH}/downloads/pdf/#{decorated_institution.name}.pdf" }
-  let(:pdf) { Reports::Pdf::Institution.new(institution).write_pdf }
+  let(:pdf) { Reports::Pdf::Institution.new(institution).generate }
   let(:pdf_content) { PDF::Reader.new(file).page(1).to_s }
 
   it "contains institution name" do
