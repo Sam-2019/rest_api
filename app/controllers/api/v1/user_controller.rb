@@ -11,14 +11,14 @@ class Api::V1::UserController < ApiController
   def pdf
     user = User.find params[:id]
     @user = ActiveDecorator::Decorator.instance.decorate(user)
-    download = Reports::Pdf::User.new(user).write_pdf
+    download = Reports::Pdf::User.new(@user).generate
 
     respond_to do |format|
       if download
         format.json { render json: "Success", status: :created }
         format.pdf {
-          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{@user.user_name}.pdf"),
-            filename: "#{@user.user_name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{@user.name}.pdf"),
+            filename: "#{@user.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
         }
       else
         format.json { render json: "Failed", status: :unprocessable_entity }

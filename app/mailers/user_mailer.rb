@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
       attachments["File.pdf"] = File.read("#{@filepath}#{@user.user_name}.pdf")
       build(user, "Welcome to My Awesome Site")
     else
-      Reports::Pdf::User.new(@user).write_pdf
+      Reports::Pdf::User.new(@user).generate
       UserMailer.welcome_email(user)
     end
   end

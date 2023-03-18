@@ -10,7 +10,7 @@ class Api::V1::InstitutionController < ApiController
 
   def pdf
     institution = Institution.find pdf_param
-    download = Reports::Pdf::Institution.new(institution).write_pdf
+    download = Reports::Pdf::Institution.new(institution).generate
 
     respond_to do |format|
       if download
