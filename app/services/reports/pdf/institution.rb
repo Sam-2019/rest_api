@@ -4,16 +4,26 @@ module Reports
   module Pdf
     class Institution < Reports::Pdf::Base
       def intro
-        @institution = @data
-        @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@institution.name}.pdf"
+        @file = "#{PDF_DOWNLOAD_FOLDER}/#{@data.name}.pdf"
+      end
+
+      def generate
+        get_pdf
+        true
+      end
+
+      def get_pdf
+        intro
+
+        unless FileTest.exist?("#{@file}")
+          write_pdf
+        end
       end
 
       def write_pdf
-        intro
-
         @document.move_down(5)
         @document.font "Montserrat"
-        @document.text "Hello #{@institution.name}", align: :left
+        @document.text "Hello #{@data.name}", align: :left
         canvas
 
         @document.start_new_page
@@ -25,7 +35,7 @@ module Reports
         @document.font "Courier"
         @document.text "Yeah.", align: :right
 
-        @document.render_file @filepath
+        @document.render_file @file
         true
       end
     end
