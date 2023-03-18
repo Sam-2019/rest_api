@@ -1,1 +1,0 @@
-Dotenv.require_keys("TELEGRAM")

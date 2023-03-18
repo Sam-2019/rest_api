@@ -49,7 +49,6 @@ gem 'rswag-ui'
 gem 'active_decorator'
 gem 'caxlsx'
 gem 'caxlsx_rails'
-gem 'telegram-bot'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'awesome_print'
 gem 'hirb'
