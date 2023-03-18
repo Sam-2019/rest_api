@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Reports
   module Pdf
     class User < Reports::Pdf::Base
-
       def intro
         @user = ActiveDecorator::Decorator.instance.decorate(@data)
         @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@user.user_name}.pdf"

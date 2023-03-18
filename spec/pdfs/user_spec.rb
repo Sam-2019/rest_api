@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe Reports do
   let(:user) { build(:user) }
@@ -8,9 +10,9 @@ RSpec.describe Reports do
   let(:pdf) { Reports::Pdf::User.new(user).write_pdf }
   let(:pdf_content) { PDF::Reader.new(file).page(1).to_s }
 
-  it 'contains hello & user name' do
+  it "contains hello & user name" do
     expect(pdf).to be_truthy
-    expect(pdf_content).to include('Hello')
-    expect(pdf_content).to include("#{decorated_user.user_name}")
+    expect(pdf_content).to include("Hello")
+    expect(pdf_content).to include(decorated_user.user_name.to_s)
   end
 end

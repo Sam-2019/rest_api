@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module Reports
   module Pdf
     class Institution < Reports::Pdf::Base
-
       def intro
         @institution = @data
         @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@institution.name}.pdf"
       end
-    
+
       def write_pdf
         intro
 

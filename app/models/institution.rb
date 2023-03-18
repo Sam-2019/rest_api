@@ -1,69 +1,71 @@
+# frozen_string_literal: true
+
 class Institution < ApplicationRecord
-    has_paper_trail
-    include AASM
+  has_paper_trail
+  include AASM
 
-    after_commit :log_commit_action, :generate_pdf
+  after_commit :log_commit_action, :generate_pdf
 
-    after_update :log_update_action
-    after_destroy :log_delete_action
+  after_update :log_update_action
+  after_destroy :log_delete_action
 
-    has_many :users
+  has_many :users
 
-    validates :name, presence: true, length: {minimum: 3 ,maximum: 50 }
-    validates :location, presence: true, length: {maximum: 50 }
-    validates :email, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, presence: true, length: {minimum: 3, maximum: 50}
+  validates :location, presence: true, length: {maximum: 50}
+  validates :email, presence: true, uniqueness: {case_sensitive: false}
 
-    scope :active, -> (query = false) { where(soft_delete: query) }
-    scope :inactive, -> (query = true) { where(soft_delete: query) }
-    scope :search_by_location, -> (location = nil) { active.where(location: location) }
-    scope :search_by_name, -> (name = nil) { active.where(name: name) }
-    scope :get_institution, -> (query = nil) { active.where(id: query) }
-    scope :verified, -> (query = "verified") {active.where(state: query) }
-    scope :not_verified, -> (query = "not_verified") { active.where(state: query) }
-    scope :approved, -> (query = "approved") { active.where(state: query) }
-    scope :not_approved, -> (query = "not_approved") { active.where(state: query) }
+  scope :active, ->(query = false) { where(soft_delete: query) }
+  scope :inactive, ->(query = true) { where(soft_delete: query) }
+  scope :search_by_location, ->(location = nil) { active.where(location: location) }
+  scope :search_by_name, ->(name = nil) { active.where(name: name) }
+  scope :get_institution, ->(query = nil) { active.where(id: query) }
+  scope :verified, ->(query = "verified") { active.where(state: query) }
+  scope :not_verified, ->(query = "not_verified") { active.where(state: query) }
+  scope :approved, ->(query = "approved") { active.where(state: query) }
+  scope :not_approved, ->(query = "not_approved") { active.where(state: query) }
 
 
-    aasm column: :state do # default column: aasm_state
-      state :not_verified, initial: true
-      state :verified, :not_approved, :approved
+  aasm column: :state do # default column: aasm_state
+    state :not_verified, initial: true
+    state :verified, :not_approved, :approved
 
-      after_all_transitions :log_status_change
-  
-      event :verify do
-        transitions from: :not_verified, to: :verified
-      end
-  
-      event :pending_approval do
-        transitions from: :verified, to: :not_approved
-      end
+    after_all_transitions :log_status_change
 
-      event :approve do
-        transitions from: :not_approved, to: :approved
-      end
+    event :verify do
+      transitions from: :not_verified, to: :verified
     end
 
-    private 
-
-    def log_commit_action
-      Rails.logger.debug 'Institution saved'
+    event :pending_approval do
+      transitions from: :verified, to: :not_approved
     end
 
-    def log_update_action
-      Rails.logger.debug 'Institution updated'
+    event :approve do
+      transitions from: :not_approved, to: :approved
     end
+  end
 
-    def log_delete_action
-      Rails.logger.debug 'Institution deleted'
-    end
+private
 
-    def log_status_change
-      Rails.logger.debug "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
-    end
+  def log_commit_action
+    Rails.logger.debug "Institution saved"
+  end
 
-    def generate_pdf
-      Reports::Pdf::Institution.new(self)
-    end
+  def log_update_action
+    Rails.logger.debug "Institution updated"
+  end
+
+  def log_delete_action
+    Rails.logger.debug "Institution deleted"
+  end
+
+  def log_status_change
+    Rails.logger.debug "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+  end
+
+  def generate_pdf
+    Reports::Pdf::Institution.new(self)
+  end
 end
 
 # == Schema Information

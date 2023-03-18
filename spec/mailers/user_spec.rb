@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
@@ -14,7 +16,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "without email" do
       expect(user_without_email.valid?).to be false
     end
-  
+
     it "with name and email" do
       email = UserMailer.welcome_email(user)
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Institution do
   menu priority: 1, label: proc { I18n.t("active_admin.institutions") }
   permit_params :name, :location
@@ -42,13 +44,12 @@ ActiveAdmin.register Institution do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.attribute_names
-    f.inputs 'Details' do
+    f.semantic_errors(*f.object.errors.attribute_names)
+    f.inputs "Details" do
       f.input :name
       f.input :location
       # f.input :state, as: :select, collection: %w[ not_verified verified not_approved approved ]
     end
     f.actions
   end
-  
 end

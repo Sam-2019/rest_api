@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class InstitutionTest < ActiveSupport::TestCase
-
   def setup
     @institution = Institution.new(name: "Wisconsin Univerity", location: "Legon")
   end
@@ -29,5 +30,4 @@ class InstitutionTest < ActiveSupport::TestCase
     @institution.location = "a" * 51
     assert_not @institution.valid?
   end
-  
 end

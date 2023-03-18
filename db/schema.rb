@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_27_195637) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_195637) do
   create_table "institutions", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "state"
     t.boolean "soft_delete", default: false
     t.string "email"
@@ -25,8 +24,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
   create_table "motor_alert_locks", force: :cascade do |t|
     t.integer "alert_id", null: false
     t.string "lock_timestamp", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["alert_id", "lock_timestamp"], name: "index_motor_alert_locks_on_alert_id_and_lock_timestamp", unique: true
     t.index ["alert_id"], name: "index_motor_alert_locks_on_alert_id"
   end
@@ -40,9 +39,9 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.text "preferences", null: false
     t.bigint "author_id"
     t.string "author_type"
-    t.datetime "deleted_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "motor_alerts_name_unique_index", unique: true, where: "deleted_at IS NULL"
     t.index ["query_id"], name: "index_motor_alerts_on_query_id"
     t.index ["updated_at"], name: "index_motor_alerts_on_updated_at"
@@ -54,9 +53,9 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.text "preferences", null: false
     t.text "credentials", null: false
     t.text "description"
-    t.datetime "deleted_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "motor_api_configs_name_unique_index", unique: true, where: "deleted_at IS NULL"
   end
 
@@ -74,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.text "comment"
     t.string "remote_address"
     t.string "request_uuid"
-    t.datetime "created_at", precision: 6
+    t.datetime "created_at"
     t.index ["associated_type", "associated_id"], name: "motor_auditable_associated_index"
     t.index ["auditable_type", "auditable_id", "version"], name: "motor_auditable_index"
     t.index ["created_at"], name: "index_motor_audits_on_created_at"
@@ -85,8 +84,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
   create_table "motor_configs", force: :cascade do |t|
     t.string "key", null: false
     t.text "value", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["key"], name: "index_motor_configs_on_key", unique: true
     t.index ["updated_at"], name: "index_motor_configs_on_updated_at"
   end
@@ -97,9 +96,9 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.text "preferences", null: false
     t.bigint "author_id"
     t.string "author_type"
-    t.datetime "deleted_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["title"], name: "motor_dashboards_title_unique_index", unique: true, where: "deleted_at IS NULL"
     t.index ["updated_at"], name: "index_motor_dashboards_on_updated_at"
   end
@@ -112,10 +111,10 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.text "preferences", null: false
     t.bigint "author_id"
     t.string "author_type"
-    t.datetime "deleted_at", precision: 6
+    t.datetime "deleted_at"
     t.string "api_config_name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "motor_forms_name_unique_index", unique: true, where: "deleted_at IS NULL"
     t.index ["updated_at"], name: "index_motor_forms_on_updated_at"
   end
@@ -129,8 +128,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
 
   create_table "motor_note_tags", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "motor_note_tags_name_unique_index", unique: true
   end
 
@@ -140,9 +139,9 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.string "author_type"
     t.string "record_id", null: false
     t.string "record_type", null: false
-    t.datetime "deleted_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["author_id", "author_type"], name: "motor_notes_author_id_author_type_index"
   end
 
@@ -154,8 +153,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.string "record_id"
     t.string "record_type"
     t.string "status", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["recipient_id", "recipient_type"], name: "motor_notifications_recipient_id_recipient_type_index"
     t.index ["record_id", "record_type"], name: "motor_notifications_record_id_record_type_index"
   end
@@ -167,9 +166,9 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.text "preferences", null: false
     t.bigint "author_id"
     t.string "author_type"
-    t.datetime "deleted_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "motor_queries_name_unique_index", unique: true, where: "deleted_at IS NULL"
     t.index ["updated_at"], name: "index_motor_queries_on_updated_at"
   end
@@ -181,9 +180,9 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.string "recipient_type", null: false
     t.string "record_id"
     t.string "record_type"
-    t.datetime "scheduled_at", precision: 6, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "scheduled_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["author_id", "author_type"], name: "motor_reminders_author_id_author_type_index"
     t.index ["recipient_id", "recipient_type"], name: "motor_reminders_recipient_id_recipient_type_index"
     t.index ["record_id", "record_type"], name: "motor_reminders_record_id_record_type_index"
@@ -193,8 +192,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
   create_table "motor_resources", force: :cascade do |t|
     t.string "name", null: false
     t.text "preferences", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_motor_resources_on_name", unique: true
     t.index ["updated_at"], name: "index_motor_resources_on_updated_at"
   end
@@ -209,8 +208,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
 
   create_table "motor_tags", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "motor_tags_name_unique_index", unique: true
   end
 
@@ -218,8 +217,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "state"
     t.integer "institution_id"
     t.string "user_id"
@@ -234,7 +233,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_195637) do
     t.string "event", null: false
     t.string "whodunnit"
     t.text "object", limit: 1073741823
-    t.datetime "created_at", precision: 6
+    t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 

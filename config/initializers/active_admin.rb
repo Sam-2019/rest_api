@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #
@@ -117,7 +119,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  config.root_to = 'institutions#index'
+  config.root_to = "institutions#index"
 
   # == Admin Comments
   #

@@ -1,77 +1,79 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-    has_paper_trail
-    include AASM
-    
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  has_paper_trail
+  include AASM
 
-    before_save {self.email = email.downcase}
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d-]+(\.[a-z\d-]+)*\.[a-z]+\z/i
 
-    after_commit :log_commit_action, :generate_pdf
+  before_save { self.email = email.downcase }
 
-    after_update :log_update_action
-    after_destroy :log_delete_action
+  after_commit :log_commit_action, :generate_pdf
 
-    belongs_to :institution
+  after_update :log_update_action
+  after_destroy :log_delete_action
 
-    validates :first_name, presence: true, length: {minimum: 3 ,maximum: 15}
-    validates :last_name, presence: true, length: {minimum: 3 ,maximum: 50}
-    validates :email, presence: true, uniqueness: {case_sensitive: false}
-    # validates :attribute, phone: { possible: true, allow_blank: true, types: [:voip, :mobile], country_specifier: -> phone { phone.country.try(:upcase) } }
+  belongs_to :institution
 
-    scope :active, -> (query = false) { where(soft_delete: query) }
-    scope :inactive, -> (query = true) { where(soft_delete: query) }
-    scope :search_by_name, lambda { |query = nil|
- active.where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%")
-                           }
-    scope :verified, -> (query = "verified") { active.where(state: query) }
-    scope :not_verified, -> (query = "not_verified") { active.where(state: query) }
-    scope :approved, -> (query = "approved") { active.where(state: query) }
-    scope :not_approved, -> (query = "not_approved") { active.where(state: query) }
+  validates :first_name, presence: true, length: {minimum: 3, maximum: 15}
+  validates :last_name, presence: true, length: {minimum: 3, maximum: 50}
+  validates :email, presence: true, uniqueness: {case_sensitive: false}
+  # validates :attribute, phone: { possible: true, allow_blank: true, types: [:voip, :mobile], country_specifier: -> phone { phone.country.try(:upcase) } }
 
-    aasm column: :state do # default column: aasm_state
-        state :not_verified, initial: true
-        state :verified, :not_approved, :approved
+  scope :active, ->(query = false) { where(soft_delete: query) }
+  scope :inactive, ->(query = true) { where(soft_delete: query) }
+  scope :search_by_name, lambda { |query = nil|
+                           active.where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%")
+                         }
+  scope :verified, ->(query = "verified") { active.where(state: query) }
+  scope :not_verified, ->(query = "not_verified") { active.where(state: query) }
+  scope :approved, ->(query = "approved") { active.where(state: query) }
+  scope :not_approved, ->(query = "not_approved") { active.where(state: query) }
 
-        after_all_transitions :log_status_change
-    
-        event :verify do
-          transitions from: :not_verified, to: :verified
-        end
-    
-        event :pending_approval do
-          transitions from: :verified, to: :not_approved
-        end
-  
-        event :approve do
-          transitions from: :not_approved, to: :approved
-        end
+  aasm column: :state do # default column: aasm_state
+    state :not_verified, initial: true
+    state :verified, :not_approved, :approved
+
+    after_all_transitions :log_status_change
+
+    event :verify do
+      transitions from: :not_verified, to: :verified
     end
 
-    def get_institution(id)
-      Institution.get_institution(id)
-    end
-   
-    private
-
-    def log_commit_action
-      Rails.logger.debug 'User saved'
+    event :pending_approval do
+      transitions from: :verified, to: :not_approved
     end
 
-    def log_update_action
-      Rails.logger.debug 'User updated'
+    event :approve do
+      transitions from: :not_approved, to: :approved
     end
+  end
 
-    def log_delete_action
-      Rails.logger.debug 'User deleted'
-    end
+  def get_institution(id)
+    Institution.get_institution(id)
+  end
 
-    def log_status_change
-      Rails.logger.debug "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
-    end
+private
 
-    def generate_pdf
-      Reports::Pdf::User.new(self)
-    end
+  def log_commit_action
+    Rails.logger.debug "User saved"
+  end
+
+  def log_update_action
+    Rails.logger.debug "User updated"
+  end
+
+  def log_delete_action
+    Rails.logger.debug "User deleted"
+  end
+
+  def log_status_change
+    Rails.logger.debug "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+  end
+
+  def generate_pdf
+    Reports::Pdf::User.new(self)
+  end
 end
 
 # == Schema Information

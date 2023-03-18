@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 module InstitutionDecorator
   def institution_name
-    "#{name}"
+    name.to_s
   end
 
   def institution_location
-    "#{location}"
+    location.to_s
   end
 
   def current_state
-    "#{state}"
+    state.to_s
   end
 
   def email_address
-    "#{email}"
+    email.to_s
   end
 end

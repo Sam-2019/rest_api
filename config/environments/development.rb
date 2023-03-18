@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
-require 'factory_bot_rails'
-require 'rails/console/helpers'
+require "factory_bot_rails"
+require "rails/console/helpers"
 Rails::ConsoleMethods.prepend(FactoryBot::Syntax::Methods)
 
 Rails.application.configure do

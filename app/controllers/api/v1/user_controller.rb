@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Api::V1::UserController < ApiController
   include PdfParam
 
   def index
     users = User.active
-      render json: users.to_json
+    render json: users.to_json
   end
 
   def pdf
@@ -15,8 +17,8 @@ class Api::V1::UserController < ApiController
       if download
         format.json { render json: "Success", status: :created }
         format.pdf {
-            send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{@user.user_name}.pdf"),
-              filename: "#{@user.user_name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{@user.user_name}.pdf"),
+            filename: "#{@user.user_name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
         }
       else
         format.json { render json: "Failed", status: :unprocessable_entity }
@@ -27,59 +29,59 @@ class Api::V1::UserController < ApiController
   def spreadsheet
     download = Reports::Excel::UserList.new.generate
 
-      if download
-        render json: "Success", status: :created
-      else
-        render json: "Failed", status: :unprocessable_entity
-      end
+    if download
+      render json: "Success", status: :created
+    else
+      render json: "Failed", status: :unprocessable_entity
+    end
   end
 
   def show
     user = User.find params[:id]
 
-      if user
-        render json: user.to_json
-      else
-        render_error(user)
-      end
+    if user
+      render json: user.to_json
+    else
+      render_error(user)
+    end
   end
 
   def update
     user = User.find params[:id]
     updated_user = user.update(user_params)
 
-      if updated_user
-        Dispatch.new(user).user_update_mail
-        render json: true, status: :created
-      else
-        render json: true, status: :unprocessable_entity
-      end
+    if updated_user
+      Dispatch.new(user).user_update_mail
+      render json: true, status: :created
+    else
+      render json: true, status: :unprocessable_entity
+    end
   end
 
   def destroy
     user = User.find params[:id]
     updated_user = user.update(soft_delete: true)
 
-      if updated_user
-        Dispatch.new(user).user_deletion_mail
-        render json: true, status: :no_content
-      else
-        render_error(user)
-      end
+    if updated_user
+      Dispatch.new(user).user_deletion_mail
+      render json: true, status: :no_content
+    else
+      render_error(user)
+    end
   end
 
   def create
     user = User.new(user_params)
-    
-      if user.save
-        Dispatch.new(user).user_creation_mail
-        render json: user.to_json, status: :created
-      else
-        render_error(user)
-      end
+
+    if user.save
+      Dispatch.new(user).user_creation_mail
+      render json: user.to_json, status: :created
+    else
+      render_error(user)
+    end
   end
 
-  private
+private
 
   def user_params
     params.permit(:first_name, :last_name, :email, :institution_id)

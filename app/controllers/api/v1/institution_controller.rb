@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Api::V1::InstitutionController < ApiController
   include PdfParam
 
   def index
     institutions = Institution.all
-        render json: institutions.to_json
+    render json: institutions.to_json
   end
 
   def pdf
@@ -14,8 +16,8 @@ class Api::V1::InstitutionController < ApiController
       if download
         format.json { render json: "Success", status: :created }
         format.pdf {
-            send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name}.pdf"),
-              filename: "#{institution.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name}.pdf"),
+            filename: "#{institution.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
         }
       else
         format.json { render json: "Failed", status: :unprocessable_entity }
@@ -26,59 +28,59 @@ class Api::V1::InstitutionController < ApiController
   def spreadsheet
     download = Reports::Excel::InstitutionList.new.generate
 
-      if download
-        render json: "Success", status: :created
-      else
-        render json: "Failed", status: :unprocessable_entity
-      end
+    if download
+      render json: "Success", status: :created
+    else
+      render json: "Failed", status: :unprocessable_entity
+    end
   end
 
   def show
     institution = Institution.find params[:id]
 
-      if institution
-        render json: institution.to_json
-      else
-        render_error(institution)
-      end
+    if institution
+      render json: institution.to_json
+    else
+      render_error(institution)
+    end
   end
 
   def update
     institution = Institution.find params[:id]
     updated_institution = institution.update(institution_params)
 
-      if updated_institution
-        Dispatch.new(institution).institution_update_mail
-        render json: true, status: :created
-      else
-        render json: false, status: :unprocessable_entity
-      end
+    if updated_institution
+      Dispatch.new(institution).institution_update_mail
+      render json: true, status: :created
+    else
+      render json: false, status: :unprocessable_entity
+    end
   end
 
   def destroy
     institution = Institution.find params[:id]
     updated_institution = institution.update(soft_delete: true)
 
-      if updated_institution
-        Dispatch.new(institution).institution_deletion_mail
-        render json: true,  status: :no_content
-      else
-        render_error(institution)
-      end
+    if updated_institution
+      Dispatch.new(institution).institution_deletion_mail
+      render json: true, status: :no_content
+    else
+      render_error(institution)
+    end
   end
 
   def create
     institution = Institution.new(institution_params)
 
-      if institution.save
-        Dispatch.new(institution).institution_creation_mail
-        render json: institution.to_json, status: :created
-      else
-        render_error(institution)
-      end
+    if institution.save
+      Dispatch.new(institution).institution_creation_mail
+      render json: institution.to_json, status: :created
+    else
+      render_error(institution)
+    end
   end
 
-  private
+private
 
   def institution_params
     params.permit(:name, :location)
@@ -87,5 +89,4 @@ class Api::V1::InstitutionController < ApiController
   def render_error(data)
     render json: data.errors.full_messages.to_sentence, status: :unprocessable_entity
   end
-
 end
