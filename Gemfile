@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -25,72 +27,72 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem 'aasm', '~> 5.2'
-gem 'after_commit_everywhere', '~> 1.0'
-gem 'phonelib'
+gem "aasm", "~> 5.2"
+gem "after_commit_everywhere", "~> 1.0"
+gem "phonelib"
 gem "valid_email2"
 
-gem 'activeadmin'
+gem "activeadmin"
 
 # Plus integrations with:
-gem 'devise'
-gem 'cancancan'
-gem 'draper'
-gem 'pundit'
-gem 'sprockets'
-gem 'sass-rails'
+gem "devise"
+gem "cancancan"
+gem "draper"
+gem "pundit"
+gem "sprockets"
+gem "sass-rails"
 # gem 'csv-importer'
-gem 'rswag-api'
-gem 'rswag-ui'
-gem 'active_decorator'
-gem 'caxlsx'
-gem 'caxlsx_rails'
-gem 'dotenv-rails', groups: [:development, :test]
-gem 'awesome_print'
-gem 'hirb'
-gem 'hirb-unicode'
+gem "rswag-api"
+gem "rswag-ui"
+gem "active_decorator"
+gem "caxlsx"
+gem "caxlsx_rails"
+gem "dotenv-rails", groups: [:development, :test]
+gem "awesome_print"
+gem "hirb"
+gem "unicode-display_width", "~> 2.4", ">= 2.4.2"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
-gem 'prawn'
-gem 'prawn-qrcode', github: 'nukturnal/prawn-qrcode'
-gem 'prawn-table'
-gem 'motor-admin'
+gem "prawn"
+gem "prawn-qrcode", github: "nukturnal/prawn-qrcode"
+gem "prawn-table"
+gem "motor-admin"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails"
   gem "rswag-specs"
-  gem 'factory_bot'
-  gem 'factory_bot_rails'
-  gem 'database_cleaner'
-  gem 'simplecov', require: false
+  gem "factory_bot"
+  gem "factory_bot_rails"
+  gem "database_cleaner"
+  gem "simplecov", require: false
   # gem "rubycritic", require: false
   gem "letter_opener"
-  gem 'letter_opener_web', '~> 2.0'
-  gem 'pry-rails'
-  gem 'pdf-reader'
-  gem 'database_cleaner-active_record'
+  gem "letter_opener_web", "~> 2.0"
+  gem "pry-rails"
+  gem "pdf-reader"
+  gem "database_cleaner-active_record"
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem 'annotate'
-  gem 'faker'
+  gem "annotate"
+  gem "faker"
   gem "rswag"
-  gem 'rubocop', require: false
+  gem "rubocop", require: false
+  gem "standard", require: false
 end
 
 
 gem "sidekiq", "~> 6.5"
-gem 'paper_trail'
-
+gem "paper_trail"
