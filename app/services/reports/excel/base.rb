@@ -16,8 +16,8 @@ module Reports
         users_list
         institutions_list
 
-        @filepath = "#{SPREADSHEET_DOWNLOAD_FOLDER}/all_list.xlsx"
-        @document.serialize @filepath
+        @file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/all_list.xlsx"
+        @document.serialize @file
       end
 
       def users_list
