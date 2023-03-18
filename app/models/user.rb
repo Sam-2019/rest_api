@@ -20,7 +20,9 @@ class User < ApplicationRecord
 
     scope :active, -> (query = false) { where(soft_delete: query) }
     scope :inactive, -> (query = true) { where(soft_delete: query) }
-    scope :search_by_name, -> (query = nil) { active.where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%") }
+    scope :search_by_name, lambda { |query = nil|
+ active.where("first_name LIKE ? OR last_name LIKE ? ", "%" + query + "%", "%" + query + "%")
+                           }
     scope :verified, -> (query = "verified") { active.where(state: query) }
     scope :not_verified, -> (query = "not_verified") { active.where(state: query) }
     scope :approved, -> (query = "approved") { active.where(state: query) }
@@ -52,19 +54,19 @@ class User < ApplicationRecord
     private
 
     def log_commit_action
-      puts 'User saved'
+      Rails.logger.debug 'User saved'
     end
 
     def log_update_action
-      puts 'User updated'
+      Rails.logger.debug 'User updated'
     end
 
     def log_delete_action
-      puts 'User deleted'
+      Rails.logger.debug 'User deleted'
     end
 
     def log_status_change
-      puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+      Rails.logger.debug "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
     end
 
     def generate_pdf

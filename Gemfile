@@ -87,8 +87,10 @@ group :development do
   gem 'annotate'
   gem 'faker'
   gem "rswag"
+  gem 'rubocop', require: false
 end
 
 
 gem "sidekiq", "~> 6.5"
 gem 'paper_trail'
+

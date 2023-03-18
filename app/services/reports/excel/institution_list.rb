@@ -18,7 +18,8 @@ module Reports
                     rescue
                     []
                     end
-                    values = [institution.id, institution.name, institution.location, institution.state] + custom_field_values
+                    values = [institution.id, institution.name, institution.location, 
+                              institution.state] + custom_field_values
                     sheet.add_row values, types: [:string, :string, :string]
                     end
                 column_count = Institution.count + 1

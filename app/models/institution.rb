@@ -46,19 +46,19 @@ class Institution < ApplicationRecord
     private 
 
     def log_commit_action
-      puts 'Institution saved'
+      Rails.logger.debug 'Institution saved'
     end
 
     def log_update_action
-      puts 'Institution updated'
+      Rails.logger.debug 'Institution updated'
     end
 
     def log_delete_action
-      puts 'Institution deleted'
+      Rails.logger.debug 'Institution deleted'
     end
 
     def log_status_change
-      puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+      Rails.logger.debug "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
     end
 
     def generate_pdf

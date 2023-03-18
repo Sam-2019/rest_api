@@ -9,13 +9,14 @@ module Reports
             end
 
             def users_list
-                puts "Demigod"
+                Rails.logger.debug "Demigod"
                 @document.workbook.add_worksheet(name: 'Users') do |sheet|
                     header =  ['ID', 'First Name', 'Last Name', 'Email', 'State']
                     sheet.add_row header, style: Axlsx::STYLE_THIN_BORDER
 
                     User.all.each do |user|
-                        values = [user.id, user.first_name, user.last_name, user.email, user.state].to_a
+                        values = [user.id, user.first_name, user.last_name, user.email, 
+                                  user.state].to_a
                         sheet.add_row values
                     end
 

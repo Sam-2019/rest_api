@@ -4,7 +4,9 @@ RSpec.describe InstitutionDecorator do
   let(:institution) { build(:institution) }
   let(:verified_institution) { build(:institution, state: 'verified') }
   let(:decorated_institution) { ActiveDecorator::Decorator.instance.decorate(institution) }
-  let(:decorated_verified_institution) { ActiveDecorator::Decorator.instance.decorate(verified_institution) }
+  let(:decorated_verified_institution) do
+ ActiveDecorator::Decorator.instance.decorate(verified_institution)
+  end
 
   describe 'institution' do
     it 'name' do

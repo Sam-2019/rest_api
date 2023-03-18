@@ -19,12 +19,13 @@ module Reports
             end
 
             def users_list
-                puts "user list"
+                Rails.logger.debug "user list"
                 @document.workbook.add_worksheet(name: 'Users') do |sheet|
                     header =  ['ID', 'First Name', 'Last Name', 'Email', 'State']
                     sheet.add_row header, style: Axlsx::STYLE_THIN_BORDER
                     User.all.each do |user|
-                        values = [user.id, user.first_name, user.last_name, user.email, user.state].to_a
+                        values = [user.id, user.first_name, user.last_name, user.email, 
+                                  user.state].to_a
                         sheet.add_row values
                     end
                     column_count = User.count + 1
@@ -50,7 +51,8 @@ module Reports
                     rescue
                     []
                     end
-                    values = [institution.id, institution.name, institution.location, institution.state] + custom_field_values
+                    values = [institution.id, institution.name, institution.location, 
+                              institution.state] + custom_field_values
                     sheet.add_row values, types: [:string, :string, :string]
                     end
                 column_count = Institution.count + 1

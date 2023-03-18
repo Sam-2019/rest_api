@@ -33,6 +33,7 @@ class InstitutionMailer < ApplicationMailer
         @institution = ActiveDecorator::Decorator.instance.decorate(institution)
         return false if institution.email.blank? && institution.name.blank?
 
-        mail(to: "#{@institution.email_address} <#{@institution.institution_name}>", subject: subject)
+        mail(to:      "#{@institution.email_address} <#{@institution.institution_name}>", 
+             subject: subject)
     end
 end
