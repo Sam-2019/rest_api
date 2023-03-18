@@ -49,6 +49,11 @@ class User < ApplicationRecord
     end
   end
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+
 private
 
   def log_commit_action
