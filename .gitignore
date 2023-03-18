@@ -36,5 +36,6 @@ db/test.*
 waste
 /coverage
 spec/examples.txt
+/downloads
 
 .env
