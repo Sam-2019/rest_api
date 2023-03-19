@@ -15,10 +15,10 @@ module Reports
       def generate_combo
         file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/all_list.xlsx"
 
-        unless FileTest.exist?("#{file}")
+        unless FileTest.exist?(file.to_s)
           users_list
           institutions_list
-  
+
           @document.serialize file.to_s
         end
       end

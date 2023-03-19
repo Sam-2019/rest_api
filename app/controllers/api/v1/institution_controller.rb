@@ -13,17 +13,17 @@ class Api::V1::InstitutionController < ApiController
     Reports::Pdf::Institution.new(institution).generate
 
     respond_to do |format|
-        format.json { render json: "Success", status: :created }
-        format.pdf {
-          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name}.pdf"),
-            filename: "#{institution.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
-        }
+      format.json { render json: "Success", status: :created }
+      format.pdf {
+        send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name}.pdf"),
+          filename: "#{institution.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+      }
     end
   end
 
   def spreadsheet
     Reports::Excel::InstitutionList.new.generate
-      render json: "Success", status: :created
+    render json: "Success", status: :created
   end
 
   def show

@@ -14,17 +14,17 @@ class Api::V1::UserController < ApiController
     Reports::Pdf::User.new(@user).generate
 
     respond_to do |format|
-        format.json { render json: "Success", status: :created }
-        format.pdf {
-          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{@user.name}.pdf"),
-            filename: "#{@user.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
-        }
+      format.json { render json: "Success", status: :created }
+      format.pdf {
+        send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{@user.name}.pdf"),
+          filename: "#{@user.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+      }
     end
   end
 
   def spreadsheet
     Reports::Excel::UserList.new.generate
-      render json: "Success", status: :created
+    render json: "Success", status: :created
   end
 
   def show

@@ -3,7 +3,6 @@
 module Reports
   module Excel
     class InstitutionList < Reports::Excel::Base
-      
       def generate
         file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/institutions_list.xlsx"
 

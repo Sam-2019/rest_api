@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_19_163337) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_195637) do
   create_table "institutions", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -44,4 +44,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_163337) do
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
+
 end

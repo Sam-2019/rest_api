@@ -3,11 +3,10 @@
 module Reports
   module Pdf
     class User < Reports::Pdf::Base
-
       def generate
         @file = "#{PDF_DOWNLOAD_FOLDER}/#{@data.name}.pdf"
 
-        unless FileTest.exist?("#{@file}")
+        unless FileTest.exist?(@file.to_s)
           write_pdf
         end
       end

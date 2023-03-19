@@ -86,12 +86,11 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "annotate"
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+  gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "main"
   gem "rswag"
   gem "rubocop", require: false
   gem "standard", require: false
 end
-
 
 gem "sidekiq", "~> 6.5"
 gem "paper_trail"

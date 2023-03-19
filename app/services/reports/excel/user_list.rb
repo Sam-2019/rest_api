@@ -3,13 +3,12 @@
 module Reports
   module Excel
     class UserList < Reports::Excel::Base
-      
       def generate
         file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/users_list.xlsx"
 
         unless FileTest.exist?(file.to_s)
-        users_list
-        @document.serialize file.to_s
+          users_list
+          @document.serialize file.to_s
         end
       end
 
