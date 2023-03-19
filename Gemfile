@@ -64,7 +64,6 @@ gem "rack-cors"
 gem "prawn"
 gem "prawn-qrcode", github: "nukturnal/prawn-qrcode"
 gem "prawn-table"
-# gem "motor-admin"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
