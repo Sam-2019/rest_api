@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 module UserDecorator
-  def user_name
+  def name
     "#{first_name} #{last_name}"
   end
 
   def email_address
-    "#{email}"
+    email.to_s
   end
 
   def current_state
-    "#{state}"
+    state.to_s
   end
 end

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-
   def setup
     @user = User.new(first_name: "Samuel", last_name: "Blankson", email: "blankson@gmail.com")
   end
@@ -20,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "email should be present" do 
+  test "email should be present" do
     @user.email = " "
     assert_not @user.valid?
   end
@@ -61,5 +62,4 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not duplicate_user.valid?
   end
-
 end

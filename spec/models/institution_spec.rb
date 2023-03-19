@@ -1,14 +1,16 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe Institution, type: :model do
   let(:institution) { build(:institution) }
   let(:institution_without_name) { build(:institution, name: nil) }
   let(:institution_without_location) { build(:institution, location: nil) }
-  let(:verified_institution) { build(:institution, state: 'verified') }
-  
+  let(:verified_institution) { build(:institution, state: "verified") }
+
   describe "Validation" do
     it "without name" do
-    expect(institution_without_name.valid?).to be false
+      expect(institution_without_name.valid?).to be false
     end
 
     it "without location" do
@@ -80,6 +82,5 @@ RSpec.describe Institution, type: :model do
       expect(institution).to_not allow_transition_to(:not_approved)
       expect(institution).to_not allow_transition_to(:verified)
     end
-
   end
 end

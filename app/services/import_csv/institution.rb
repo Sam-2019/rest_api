@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ImportCsv
   class Institution
     # include CSVImporter

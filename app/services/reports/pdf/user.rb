@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 module Reports
   module Pdf
     class User < Reports::Pdf::Base
+      def generate
+        @file = "#{PDF_DOWNLOAD_FOLDER}/#{@data.name}.pdf"
 
-      def intro
-        @user = ActiveDecorator::Decorator.instance.decorate(@data)
-        @filepath = "#{PDF_DOWNLOAD_FOLDER}/#{@user.user_name}.pdf"
+        unless FileTest.exist?(@file.to_s)
+          write_pdf
+        end
       end
 
       def write_pdf
-        intro
-
         @document.move_down(5)
-        @document.text "Hello #{@user.user_name}"
-        @document.render_file @filepath
+        @document.text "Hello #{@data.name}"
+        @document.render_file @file
         true
       end
     end

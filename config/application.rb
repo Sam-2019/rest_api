@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -16,7 +18,16 @@ require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+Bundler.require(*Rails.groups(
+  pry: %i[development test]
+))
+
+# load pry for production console
+Bundler.require(:pry) if defined?(Rails::Console)
+
+if ["development", "test"].include? ENV["RAILS_ENV"]
+  Dotenv::Railtie.load
+end
 
 module RestApi
   class Application < Rails::Application
@@ -32,7 +43,7 @@ module RestApi
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
       g.test_framework :rspec, fixture: true
-      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
@@ -44,7 +55,7 @@ module RestApi
     config.middleware.use ActionDispatch::Session::CookieStore
 
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
-    config.action_mailer.default_url_options = { host: 'example.com' }
-    config.asset_host = 'http://example.com'
+    config.action_mailer.default_url_options = {host: "localhost:3000"}
+    config.asset_host = "http://localhost:3000"
   end
 end

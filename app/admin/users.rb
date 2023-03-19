@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register User, as: "People" do
   menu priority: 2, label: proc { I18n.t("active_admin.users") }
   permit_params :first_name, :last_name, :email, :institution_id
@@ -49,8 +51,8 @@ ActiveAdmin.register User, as: "People" do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.attribute_names
-    f.inputs 'Details' do
+    f.semantic_errors(*f.object.errors.attribute_names)
+    f.inputs "Details" do
       f.input :first_name
       f.input :last_name
       f.input :email
@@ -59,5 +61,4 @@ ActiveAdmin.register User, as: "People" do
     end
     f.actions
   end
-  
 end
