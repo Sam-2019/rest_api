@@ -1,0 +1,265 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "rest_api",
+    "dateExported": "2023-03-19T17:49:22.747Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f28adec6-7410-471a-ae88-120e4b149d1f",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "users",
+            "url": "http://localhost:3000/api/v1/user",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2022-01-21T23:18:30.990Z",
+            "modified": "2022-10-08T06:24:01.027Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a7efd954-c248-498c-b330-f9abddf1f44f",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "user",
+            "url": "http://localhost:3000/api/v1/user/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2022-01-21T23:19:23.417Z",
+            "modified": "2022-10-08T06:24:32.302Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7f73e2c2-d81d-4807-a72e-6bfecccc4e38",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "institutions",
+            "url": "http://localhost:3000/api/v1/institution",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2022-01-21T23:24:26.265Z",
+            "modified": "2022-10-08T06:28:45.060Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "2d179a60-2e46-4822-83c5-a3b5f1bfb5d5",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "institution",
+            "url": "http://localhost:3000/api/v1/institution/15",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2022-01-21T23:23:22.983Z",
+            "modified": "2022-10-08T06:29:12.788Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d9b7b8aa-32ff-4aa4-8dfe-527320b42d66",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "create_institution",
+            "url": "http://localhost:3000/api/v1/institution/?name=Tamale&location=Tamale",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2022-01-22T11:07:27.359Z",
+            "modified": "2022-11-12T10:17:09.267Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "Tamale",
+                    "isPath": false
+                },
+                {
+                    "name": "location",
+                    "value": "Tamale",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "9039df14-6d76-4b4c-98ac-3fde21a67a54",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "create_user",
+            "url": "http://localhost:3000/api/v1/user?first_name=temi&last_name=tadedotun&email=tkemi@gmail.com&institution_id=1",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2022-01-22T11:11:44.057Z",
+            "modified": "2022-11-13T07:24:41.833Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "first_name",
+                    "value": "temi",
+                    "isPath": false
+                },
+                {
+                    "name": "last_name",
+                    "value": "tadedotun",
+                    "isPath": false
+                },
+                {
+                    "name": "email",
+                    "value": "tkemi@gmail.com",
+                    "isPath": false
+                },
+                {
+                    "name": "institution_id",
+                    "value": "1",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "84eea480-24c1-464b-aa62-ca6f185284de",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "destroy_institution",
+            "url": "http://localhost:3000/api/v1/institution/40",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2022-01-22T19:07:12.587Z",
+            "modified": "2022-10-08T06:30:40.270Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "dc2cd96c-5cc4-4c90-b66f-4bb10179311b",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "destroy_user",
+            "url": "http://localhost:3000/api/v1/user/16",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2022-01-22T19:27:41.799Z",
+            "modified": "2022-10-08T12:01:53.728Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "09ff37dd-e2b1-46fb-bcad-dca962a7a7d2",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "update_institution",
+            "url": "http://localhost:3000/api/v1/institution/30?name=Kings Cottage",
+            "method": "PATCH",
+            "sortNum": 100000,
+            "created": "2022-01-22T19:34:55.428Z",
+            "modified": "2022-10-08T06:38:25.952Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "Kings Cottage",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "2ca02271-8c66-4a28-ac0b-fcdad2c0f9db",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "update_user",
+            "url": "http://localhost:3000/api/v1/user/2?first_name=Bill&last_name=Gurley&email=bill@benchmark.com",
+            "method": "PATCH",
+            "sortNum": 110000,
+            "created": "2022-01-22T19:36:28.380Z",
+            "modified": "2022-10-08T06:36:58.786Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "first_name",
+                    "value": "Bill",
+                    "isPath": false
+                },
+                {
+                    "name": "last_name",
+                    "value": "Gurley",
+                    "isPath": false
+                },
+                {
+                    "name": "email",
+                    "value": "bill@benchmark.com",
+                    "isPath": false
+                },
+                {
+                    "name": "id",
+                    "value": "2",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "e686b048-713d-4a68-8cc1-f180518489f1",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "users_sprdsht",
+            "url": "http://localhost:3000/api/v1/dwnld/sprdsht/users",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2022-11-12T12:45:45.113Z",
+            "modified": "2022-11-17T10:38:46.334Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fb48cf15-2878-4751-b678-a7d3023980c2",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "institutions_sprdsht",
+            "url": "http://localhost:3000/api/v1/dwnld/sprdsht/institutions",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2022-11-12T12:46:14.942Z",
+            "modified": "2022-11-17T10:39:10.766Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "47f565f1-3cbf-41a3-ab65-8b8f858b79b8",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "user_pdf",
+            "url": "http://localhost:3000/api/v1/dwnld/pdf/user/5.pdf",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2022-11-17T10:34:19.228Z",
+            "modified": "2023-03-18T19:41:10.951Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "192b4b5b-76ef-49cc-b2b1-331abcde1ebd",
+            "colId": "049b72a1-80e3-4879-a40c-aa9ac069ef31",
+            "containerId": "",
+            "name": "institution_pdf",
+            "url": "http://localhost:3000/api/v1/dwnld/pdf/institution/5.pdf",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2022-11-17T10:34:43.563Z",
+            "modified": "2023-03-18T19:04:14.416Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

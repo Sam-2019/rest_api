@@ -11,6 +11,7 @@ Simple rest api with rails
 - [Active Admin](https://activeadmin.info/): Ruby on Rails plugin for generating administration style interfaces.
 - [Prawn](https://github.com/prawnpdf/prawn): fast, tiny, and nimble PDF generator for Ruby
 - [PaperTrail](https://github.com/paper-trail-gem/paper_trail): track changes to your models, for auditing or versioning
+- [Letter Opener](https://github.com/ryanb/letter_opener): preview email in the default browser instead of sending it.
 - [Rubocop](https://github.com/rubocop/rubocop): Ruby static code analyzer (a.k.a. linter) and code formatter.
 
 ## Prerequisites
@@ -45,7 +46,8 @@ You can start the rails server using the command given below.
 bundle exec rails s
 ```
 
-And now you can visit the site with the URL http://localhost:3000/admin
+And now you can visit the site with the URL http://localhost:3000/admin \
+You can play around with the API with [Thunder Client for VS Code](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client). Follow  instructions under [Import/Export](https://github.com/rangav/thunder-client-support#import) to get `thunder-collection_rest_api.json` in the endpoints folder into your collections.
 
 ##### Linting
 
