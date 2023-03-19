@@ -13,11 +13,14 @@ module Reports
       end
 
       def generate_combo
-        users_list
-        institutions_list
+        file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/all_list.xlsx"
 
-        @file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/all_list.xlsx"
-        @document.serialize @file
+        unless FileTest.exist?("#{file}")
+          users_list
+          institutions_list
+  
+          @document.serialize file.to_s
+        end
       end
 
       def users_list

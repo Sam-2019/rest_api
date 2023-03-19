@@ -3,17 +3,9 @@
 module Reports
   module Pdf
     class User < Reports::Pdf::Base
-      def intro
-        @file = "#{PDF_DOWNLOAD_FOLDER}/#{@data.name}.pdf"
-      end
 
       def generate
-        get_pdf
-        true
-      end
-
-      def get_pdf
-        intro
+        @file = "#{PDF_DOWNLOAD_FOLDER}/#{@data.name}.pdf"
 
         unless FileTest.exist?("#{@file}")
           write_pdf

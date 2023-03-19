@@ -3,17 +3,14 @@
 module Reports
   module Excel
     class InstitutionList < Reports::Excel::Base
-      @file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/institutions_list.xlsx"
-
+      
       def generate
-        unless FileTest.exist?("#{@file}")
-          write_sheet
-        end
-      end
+        file = "#{SPREADSHEET_DOWNLOAD_FOLDER}/institutions_list.xlsx"
 
-      def write_sheet
-        institutions_list
-        @document.serialize @file
+        unless FileTest.exist?(file.to_s)
+          institutions_list
+          @document.serialize file.to_s
+        end
       end
 
       def institutions_list

@@ -10,29 +10,20 @@ class Api::V1::InstitutionController < ApiController
 
   def pdf
     institution = Institution.find pdf_param
-    download = Reports::Pdf::Institution.new(institution).generate
+    Reports::Pdf::Institution.new(institution).generate
 
     respond_to do |format|
-      if download
         format.json { render json: "Success", status: :created }
         format.pdf {
           send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name}.pdf"),
             filename: "#{institution.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
         }
-      else
-        format.json { render json: "Failed", status: :unprocessable_entity }
-      end
     end
   end
 
   def spreadsheet
-    download = Reports::Excel::InstitutionList.new.generate
-
-    if download
+    Reports::Excel::InstitutionList.new.generate
       render json: "Success", status: :created
-    else
-      render json: "Failed", status: :unprocessable_entity
-    end
   end
 
   def show
