@@ -21,10 +21,6 @@ RSpec.describe UserMailer, type: :mailer do
       email = UserMailer.welcome_email(user)
 
       expect(user.valid?).to be true
-      # expect(email.from).to eq('from@example.com')
-      # expect(email.to).to eq('School+1')
-      # expect(email.subject).to eq('Welcome to My Awesome Site')
-      # expect(email.user_name).to eq('School+1')
     end
   end
 end

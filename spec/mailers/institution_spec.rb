@@ -20,10 +20,6 @@ RSpec.describe InstitutionMailer, type: :mailer do
       email = InstitutionMailer.welcome_email(institution)
 
       expect(institution.valid?).to be true
-      # expect(email.from).to eq('from@example.com')
-      # expect(email.to).to eq('School+1')
-      # expect(email.subject).to eq('Welcome to My Awesome Site')
-      # expect(email.institution_name).to eq('School+1')
     end
   end
 end
