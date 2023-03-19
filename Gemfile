@@ -64,7 +64,7 @@ gem "rack-cors"
 gem "prawn"
 gem "prawn-qrcode", github: "nukturnal/prawn-qrcode"
 gem "prawn-table"
-gem "motor-admin"
+# gem "motor-admin"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -87,7 +87,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "annotate"
-  gem "faker"
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
   gem "rswag"
   gem "rubocop", require: false
   gem "standard", require: false
