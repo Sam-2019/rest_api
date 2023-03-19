@@ -1,6 +1,6 @@
 # Rest API
 
-[![Test CI](https://github.com/Sam-2019/rest_api/actions/workflows/test_ci.yml/badge.svg?branch=master)](https://github.com/Sam-2019/rest_api/actions/workflows/test_ci.yml) &nbsp; [![Maintainability](https://api.codeclimate.com/v1/badges/06cd6f35be4db723b41e/maintainability)](https://codeclimate.com/github/Sam-2019/rest_api/maintainability) &nbsp; [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop) &nbsp; [![Ruby Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://rubystyle.guide)
+[![Test CI](https://github.com/Sam-2019/rest_api/actions/workflows/test_ci.yml/badge.svg)](https://github.com/Sam-2019/rest_api/actions/workflows/test_ci.yml) &nbsp; [![Maintainability](https://api.codeclimate.com/v1/badges/06cd6f35be4db723b41e/maintainability)](https://codeclimate.com/github/Sam-2019/rest_api/maintainability) &nbsp; [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop) &nbsp; [![Ruby Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://rubystyle.guide)
 
 Simple rest api with rails
 
