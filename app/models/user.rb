@@ -54,7 +54,7 @@ class User < ApplicationRecord
   end
 
 
-private
+  private
 
   def log_commit_action
     Rails.logger.debug "User saved"

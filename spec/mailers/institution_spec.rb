@@ -9,15 +9,12 @@ RSpec.describe InstitutionMailer, type: :mailer do
 
   describe "Validation" do
     it "without name" do
-
     end
 
     it "without email" do
-
     end
 
     it "with name and email" do
-
     end
   end
 end

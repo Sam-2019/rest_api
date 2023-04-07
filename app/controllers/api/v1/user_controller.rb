@@ -13,11 +13,11 @@ class Api::V1::UserController < ApiController
     Reports::Pdf::User.new(user).generate
 
     respond_to do |format|
-        format.json { render json: "Success", status: :created }
-        format.pdf {
-          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{user.name.downcase}.pdf"),
-            filename: "#{user.name.downcase}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
-        }
+      format.json { render json: "Success", status: :created }
+      format.pdf {
+        send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{user.name.downcase}.pdf"),
+          filename: "#{user.name.downcase}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+      }
     end
   end
 
@@ -76,7 +76,7 @@ class Api::V1::UserController < ApiController
     end
   end
 
-private
+  private
 
   def user_params
     params.permit(:first_name, :last_name, :email, :institution_id)

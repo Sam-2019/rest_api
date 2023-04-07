@@ -13,11 +13,11 @@ class Api::V1::InstitutionController < ApiController
     Reports::Pdf::Institution.new(institution).generate
 
     respond_to do |format|
-        format.json { render json: "Success", status: :created }
-        format.pdf {
-          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name.downcase}.pdf"),
-            filename: "#{institution.name.downcase}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
-        }
+      format.json { render json: "Success", status: :created }
+      format.pdf {
+        send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name.downcase}.pdf"),
+          filename: "#{institution.name.downcase}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+      }
     end
   end
 
@@ -76,7 +76,7 @@ class Api::V1::InstitutionController < ApiController
     end
   end
 
-private
+  private
 
   def institution_params
     params.permit(:name, :location, :email)
