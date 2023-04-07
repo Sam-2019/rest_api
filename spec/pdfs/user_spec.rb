@@ -8,7 +8,7 @@ RSpec.describe Reports do
 
   let(:file) { "#{RAILS_ROOT_PATH}/downloads/pdf/#{user.name}.pdf" }
   let(:pdf) { Reports::Pdf::User.new(user).generate }
-  let(:pdf_content) { PDF::Reader.new(file).page(1).to_s }
+  let(:pdf_content) { PDF::Reader.new(file.to_s).page(1).to_s }
 
   it "contains hello & user name" do
     expect(pdf).to be_truthy
