@@ -4,7 +4,7 @@ module Reports
   module Pdf
     class User < Reports::Pdf::Base
       def generate
-        @file = "#{PDF_DOWNLOAD_FOLDER}/#{@data.name}.pdf"
+        @file = "#{PDF_DOWNLOAD_FOLDER}#{@data.name.downcase}.pdf"
 
         unless FileTest.exist?(@file.to_s)
           write_pdf

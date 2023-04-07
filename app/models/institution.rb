@@ -44,7 +44,7 @@ class Institution < ApplicationRecord
     end
   end
 
-private
+  private
 
   def log_commit_action
     Rails.logger.debug "Institution saved"

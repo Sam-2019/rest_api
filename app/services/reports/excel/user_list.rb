@@ -9,6 +9,7 @@ module Reports
         unless FileTest.exist?(file.to_s)
           users_list
           @document.serialize file.to_s
+          true
         end
       end
 

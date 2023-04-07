@@ -34,4 +34,22 @@ en:
   active_admin:
       users: 'People'
       institutions: 'Institutions'
+  mailer:
+      subject:
+        welcome: "Welcome to My Awesome Site"
+        update: "Profile Update"
+        deletion: "Account Deletion"
+      content:
+        welcome:
+          header: "Welcome %{name},"
+          body: "You have successfully signed up to example.com."
+          footer: "Thanks for joining and have a great day!"
+        update:
+          header: "Hello %{name},"
+          body: "You have successfully updated your profile."
+          footer: "Thanks and have a great day!"
+        deletion:
+          header: "Hi %{name},"
+          body: "You have successfully deleted your account."
+          footer: "Thanks and have a great day!"
 

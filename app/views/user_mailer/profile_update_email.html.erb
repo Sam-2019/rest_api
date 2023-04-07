@@ -4,12 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello <%= @user.user_name %>,</h1>
+    <h1><%= I18n.t('mailer.content.update.header', name: @user.first_name) %></h1>
 
-    <p>
-      You have successfully updated your profile.
-    </p>
+    <p><%= I18n.t('mailer.content.update.body') %></p>
 
-    <p>Thanks for joining and have a great day!</p>
+    <p><%= I18n.t('mailer.content.update.footer') %></p>
   </body>
 </html>

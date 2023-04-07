@@ -4,10 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome <%= @institution.institution_name %>,</h1>
+    <h1><%= I18n.t('mailer.content.welcome.header', name: @institution.name) %></h1>
 
-    <p>You have successfully signed up to example.com.</p>
+    <p><%= I18n.t('mailer.content.welcome.body') %></p>
 
-    <p>Thanks for joining and have a great day!</p>
+    <p><%= I18n.t('mailer.content.welcome.footer') %></p>
   </body>
 </html>

@@ -4,12 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @institution.institution_name %>,</h1>
+    <h1><%= I18n.t('mailer.content.deletion.header', name: @institution.name) %></h1>
 
-    <p>
-      You have successfully deleted your account.
-    </p>
+    <p><%= I18n.t('mailer.content.deletion.body') %></p>
 
-    <p>Thanks and have a great day!</p>
+    <p><%= I18n.t('mailer.content.deletion.footer') %></p>
   </body>
 </html>

@@ -3,7 +3,7 @@
 module PdfParam
   extend ActiveSupport::Concern
 
-private
+  private
 
   def pdf_param
     params.require(:id)
