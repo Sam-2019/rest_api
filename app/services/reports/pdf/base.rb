@@ -38,7 +38,7 @@ module Reports
 
       def metadata
         info = {
-          Title: "Daily.pdf",
+          Title: "#{@data.name}.pdf",
           Author: "Rest API",
           Subject: "My Subject",
           Keywords: "test metadata ruby pdf dry",
