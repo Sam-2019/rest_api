@@ -9,21 +9,26 @@ class Api::V1::InstitutionController < ApiController
   end
 
   def pdf
-    institution = Institution.find pdf_param
+    institution = Institution.find params[:id]
     Reports::Pdf::Institution.new(institution).generate
 
     respond_to do |format|
-      format.json { render json: "Success", status: :created }
-      format.pdf {
-        send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name}.pdf"),
-          filename: "#{institution.name}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
-      }
+        format.json { render json: "Success", status: :created }
+        format.pdf {
+          send_file RAILS_ROOT_PATH.join("downloads/pdf", "#{institution.name.downcase}.pdf"),
+            filename: "#{institution.name.downcase}.pdf", type: "application/pdf", disposition: "inline", x_sendfile: true
+        }
     end
   end
 
   def spreadsheet
-    Reports::Excel::InstitutionList.new.generate
-    render json: "Success", status: :created
+    report = Reports::Excel::InstitutionList.new.generate
+
+    if report
+      render json: "Success", status: :created
+    else
+      render json: false, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -38,10 +43,10 @@ class Api::V1::InstitutionController < ApiController
 
   def update
     institution = Institution.find params[:id]
-    updated_institution = institution.update(institution_params)
+    update = institution.update(institution_params)
 
-    if updated_institution
-      Dispatch.new(institution).institution_update_mail
+    if update
+      Dispatch.new(update).institution_update_mail
       render json: true, status: :created
     else
       render json: false, status: :unprocessable_entity
@@ -50,10 +55,10 @@ class Api::V1::InstitutionController < ApiController
 
   def destroy
     institution = Institution.find params[:id]
-    updated_institution = institution.update(soft_delete: true)
+    update = institution.update(soft_delete: true)
 
-    if updated_institution
-      Dispatch.new(institution).institution_deletion_mail
+    if update
+      Dispatch.new(update).institution_deletion_mail
       render json: true, status: :no_content
     else
       render_error(institution)
@@ -64,7 +69,7 @@ class Api::V1::InstitutionController < ApiController
     institution = Institution.new(institution_params)
 
     if institution.save
-      Dispatch.new(institution).institution_creation_mail
+      Dispatch.new(update).institution_creation_mail
       render json: institution.to_json, status: :created
     else
       render_error(institution)
@@ -74,7 +79,7 @@ class Api::V1::InstitutionController < ApiController
 private
 
   def institution_params
-    params.permit(:name, :location)
+    params.permit(:name, :location, :email)
   end
 
   def render_error(data)
