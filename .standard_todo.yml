@@ -1,0 +1,12 @@
+# Auto generated files with errors to ignore.
+# Remove from this list as you refactor files.
+---
+ignore:
+- ".pryrc":
+  - Lint/UselessAssignment
+- Gemfile:
+  - Bundler/DuplicatedGem
+- app/services/reports/pdf/base.rb:
+  - Lint/UselessAssignment
+- lib/tasks/ci.rake:
+  - Lint/UselessAssignment
